@@ -57,7 +57,7 @@ ROOT_URLCONF = 'Gigstop.urls'
 
 WSGI_APPLICATION = 'Gigstop.wsgi.application'
 
-TEMPLATE_DIRS(TEMPLATE_PATH,)
+TEMPLATE_DIRS = (TEMPLATE_PATH,)
 
 
 # Database
@@ -94,4 +94,4 @@ STATICFILES_DIRS = (
 )
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.join.path(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
