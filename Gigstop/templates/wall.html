@@ -4,12 +4,15 @@
 
 			<title>JQuery Masonry Test</title>
 
-			<link rel="stylesheet" href="app.css" type="text/css"/>
+			<link href="app.css" type="text/css"/>
 
 			<script type="text/javascript" src="jquery.min.js"></script>
-			<script src="masonry.pkgd.min.js"></script>
+			<script src="animation.js"></script>
 
-			<link rel="stylesheet" href="style-menus.css" type="text/css" media="all">
+			<link rel="stylesheet" href="ppcss/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+			<script src="ppjs/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+
+			<link rel="stylesheet" href="main.css" type="text/css" media="all">
     		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 
@@ -46,18 +49,28 @@
 
 
 
+	
 		<div class="item">
-				<a href="#"><img src="https://img.youtube.com/vi/k_LAZjLi3RU/maxresdefault.jpg" alt="" 
-				title=""
-				style="width:300px;height:250px;"/></a>
+				<a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" rel="prettyPhoto" title="">
+				<img src="https://img.youtube.com/vi/k_LAZjLi3RU/maxresdefault.jpg" alt="YouTube" title="{%band name%}"/></a>
+
+				<div class="caption">
+					<a href="http://facebook.com" target="blank">MOTHERS CAKE</a>
+					<p id="genre">Alt Rock</p>
+					<p>King Tuts Whah Whah Hut</p>
+					<p id="price">$8.00</p>
+				</div>
+
+				<div class="sell">
+					<a href="">Buy Tickets</a>
+					<p id="genre">Interested</p>
+				</div>
 		</div>
 
-
-
-
-
-		<script>
-
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function(){
+			$("a[rel^='prettyPhoto']").prettyPhoto();
+			});
 		</script>
 
 		</body>
