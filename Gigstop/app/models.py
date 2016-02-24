@@ -11,7 +11,7 @@ class Venue(models.Model):
 
 class Event(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    time = models.DataField()
+    time = models.DateField()
     venue = models.ForeignKey(Venue)
     media = models.URLField()
 
@@ -30,7 +30,7 @@ class Ticket(models.Model):
 
 
 
-class User(models.Model)
+class User(models.Model):
     username = models.CharField(max_length=128)
     email = models.CharField(max_length=128)
     location = models.CharField(max_length=128)
@@ -59,7 +59,7 @@ class Rating (models.Model):
         return self.type
 
 
-class Like(models.Model)
+class Like(models.Model):
     user = models.ForeignKey(User)
     performer = models.ForeignKey(Performer)
     
