@@ -9,24 +9,10 @@ class Venue(models.Model):
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name
 
-class Event(models.Model):
-    name = models.CharField(max_length=128, unique=True)
-    time = models.DateField()
-    venue = models.ForeignKey(Venue)
-    media = models.URLField()
 
 
-    def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.name
 
 
-class Ticket(models.Model):
-    price = models.IntegerField(max_length=100000)
-    event = models.ForeignKey(Event)
-    sold = models.IntegerField(max_length=1)
-
-    def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.price
 
 
 
@@ -48,6 +34,27 @@ class Performer (models.Model):
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name
 
+class Event(models.Model):
+	
+    name = models.CharField(max_length=128, unique=True)
+    time = models.DateTimeField()
+    venue = models.ForeignKey(Venue)
+    media = models.URLField()
+    performer = models.ForeignKey(Performer)
+	
+
+    def __unicode__(self):  #For Python 2, use __str__ on Python 3
+        return self.name
+
+
+class Ticket(models.Model):
+    price = models.IntegerField(max_length=100000)
+    event = models.ForeignKey(Event)
+    sold = models.IntegerField(max_length=1)
+
+    def __unicode__(self):  #For Python 2, use __str__ on Python 3
+        return self.price
+		
 class Rating (models.Model):
     user = models.ForeignKey(User)
     performer = models.ForeignKey(Performer)
