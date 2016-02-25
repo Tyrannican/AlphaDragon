@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 
+{% load static %}
+
 <html>
 	<head>
 
 			<title>GigStop</title>
 
-			<link rel="stylesheet" href="CSSmenu.css" type="text/css" media="all"/>
+			<link rel="stylesheet" href="{% static "CSS/CSSmenu.css" %}" type="text/css" media="all"/>
 
-			<!Import JavaScript!>
-			<script type="text/javascript" src="JS/jquery.min.js"></script>
+			<!--Import JavaScript-->
+			<script type="text/javascript" src="{% static "JS/jquery.min.js" %}"></script>
 			<script src="masonry.pkgd.min.js"></script>
-			<script src="/JS/ppjs/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+			<script src="{% static "/JS/ppjs/jquery.prettyPhoto.js" %}" type="text/javascript" charset="utf-8"></script>
 
-			<!Import CSS!>
-			<link rel="stylesheet" href="CSSmenu.css" type="text/css" media="all">
+			<!--Import CSS-->
+			<link rel="stylesheet" href="{% static "CSS/CSSmenu.css" %}" type="text/css" media="all">
     		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    		<link rel="stylesheet" href="CSS/prettyPhoto.css" type="text/css" media="screen" charset="utf-8" />
+    		<link rel="stylesheet" href="{% static "CSS/prettyPhoto.css" %}" type="text/css" media="screen" charset="utf-8" />
 	</head>
 
 	<body>
-
-		{% block body_block %} Basic Contents {% endblock %}
-
-		<!Navigation header!>
+		<!--Navigation header-->
 			<header>
 				<nav id="menu" class="nav">
 
@@ -45,8 +44,10 @@
 
 				</nav>
 			</header>
-
-		<!Bankground image and logo!>
+			<hr />
+			
+			{% block body_block %}{% endblock %}
+		<!--Bankground image and logo-->
 			<div id="banner">
 				<p>welcome to gigstop</p>
 			</div>
