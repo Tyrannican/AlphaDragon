@@ -10,12 +10,6 @@ class Venue(models.Model):
         return self.name
 
 
-
-
-
-
-
-
 class User(models.Model):
     username = models.CharField(max_length=128)
     email = models.CharField(max_length=128)
@@ -30,6 +24,7 @@ class Performer (models.Model):
     email = models.CharField(max_length=128)
     paypal = models.CharField(max_length=128)
     media = models.URLField()
+    genre = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.name
