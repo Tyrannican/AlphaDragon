@@ -1,3 +1,10 @@
 from django.contrib import admin
+from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 
-# Register your models here.
+admin.site.register(Performer)
+admin.site.register(Event)
+admin.site.register(Rating)
+admin.site.register(Venue)
+admin.site.register(Ticket)
+admin.site.register(User)
+admin.site.register(Like)
