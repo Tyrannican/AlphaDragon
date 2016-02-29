@@ -6,7 +6,7 @@ body {
     width:300px;
     height:300px;    
     border:2px solid #222;    
-    margin:5px 5px 5px 0;
+    margin:125px 5px 5px 5px;
     /* required to hide the image after resized */
     overflow:hidden;
     /* for child absolute position */
@@ -52,6 +52,8 @@ body {
 
 img {
     border:0;
+    height: 100%;
+    width: 100%;
     /* allow javascript moves the img position*/
     position:absolute;
 }
