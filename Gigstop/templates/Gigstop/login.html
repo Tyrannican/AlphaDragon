@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>Gigstop Login</title>
+	</head>
+
+	<body>
+		<h1>Login</h1>
+
+		<form id="login" method="post" 	action"/app/login/">
+			{% csrf_token %}
+			Username: <input type="text" name="username" value="" size="50"/>
+			<br />
+			Password: <input type="password" name="pass" value="" size="50"/>
+			<br />
+			<input type="submit" value="submit"/>
+		</form>
+	</body>
+</html>
