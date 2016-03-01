@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Venue(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -10,24 +11,22 @@ class Venue(models.Model):
         return self.name
 
 
-class User(models.Model):
-    username = models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
+class UserProfile(models.Model):
+
+    user = models.OneToOneField(User)
     location = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.username
+        return self.user.username
 
 class Performer (models.Model):
-    name = models.CharField(max_length=128)
-    username = models.CharField(max_length=64)
-    email = models.CharField(max_length=128)
+    user = models.OneToOneField(User)
     paypal = models.CharField(max_length=128)
     media = models.URLField()
     genre = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.name
+        return self.user.username
 
 class Event(models.Model):
 	
