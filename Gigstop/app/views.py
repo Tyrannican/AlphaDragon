@@ -12,7 +12,7 @@ def index(request):
 def about(request):
 	return render(request, 'Gigstop/about.html', {})
 
-def login(request):
+def user_login(request):
 	#POST
 	if request.method == 'POST':
 		username = request.POST.get('username')
@@ -33,7 +33,7 @@ def login(request):
 		return render(request, 'Gigstop/login.html', {})
 
 @login_required
-def logout(request):
+def user_logout(request):
 	logout(request)
 
 	return HttpResponseRedirect('/app/')
