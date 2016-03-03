@@ -40,14 +40,9 @@ class NewEventTicketsForm(forms.ModelForm):
     	fields = ('price','event', 'sold')
 
 
-class PerformerForm:
-    password = forms.CharField(widget=forms.PasswordInput())
 
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password')
 
-class PerformerProfileForm:
+class PerformerProfileForm(forms.ModelForm):
     class Meta:
         model = Performer
         fields = ('paypal', 'media', 'genre')

@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerForm, PerformerProfileForm
+from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
 
@@ -105,29 +105,29 @@ def performer_reg(request):
     registered = False
 
     if request.method == 'POST':
-        performer_form = PerformerForm(data=request.POST)
+        user_form = UserForm(data=request.POST)
         profile_form = PerformerProfileForm(data=request.POST)
 
-        if performer_form.is_valid() and profile_form.is_valid():
-            performer = performer_form.save()
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
 
-            performer.set_password(performer.password)
-            performer.save()
+            user.set_password(user.password)
+            user.save()
 
             profile = profile_form.save(commit=False)
-            profile.performer = performer
+            profile.performer = user
             registered = True
 
         else:
-            print performer_form.errors, profile_form.errors
+            print user_form.errors, profile_form.errors
 
     else:
-        performer_form = PerformerForm()
+        user_form = UserForm()
         profile_form = PerformerProfileForm()
 
     return render(request,
         'Gigstop/performer_registration.html',
-        {'performer_form': performer_form, 'profile_form': profile_form, 'registered': registered})
+        {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
 def add_event(request):
