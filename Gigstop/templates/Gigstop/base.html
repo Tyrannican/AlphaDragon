@@ -16,8 +16,8 @@
 					<div>
 						<ul id="toolbar">
 							<li><a href="{% url 'index' %}" id="Home">GIGSTOP</a></li>
-							<li><a href="{% url 'add_event' %}" id="addEvent">AddEvent</a></li>
 							<li><a href="{% url 'about' %}" id="buyTickets">About</a></li>
+							<li><a href="{% url 'add_event' %}" id="addEvent">AddEvent</a></li>
 							
 						{% if user.is_authenticated %}
 							<li><a href="#myAccount" id="interested">My Account</a></li>
