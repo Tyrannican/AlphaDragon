@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm
+from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 
 def index(request):
@@ -40,8 +40,11 @@ def user_logout(request):
 
 
 def register(request):
+    return render(request, 'Gigstop/register.html', {})
+   
 
-    # A boolean value for telling the template whether the registration was successful.
+def user_reg(request):
+     # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
 
@@ -85,10 +88,37 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-            'Gigstop/register.html',
+            'Gigstop/user_registration.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 
+def performer_reg(request):
+    registered = False
+
+    if request.method == 'POST':
+        performer_form = PerformerForm(data=request.POST)
+        profile_form = PerformerProfileForm(data=request.POST)
+
+        if performer_form.is_valid() and profile_form.is_valid():
+            performer = performer_form.save()
+
+            performer.set_password(performer.password)
+            performer.save()
+
+            profile = profile_form.save(commit=False)
+            profile.performer = performer
+            registered = True
+
+        else:
+            print performer_form.errors, profile_form.errors
+
+    else:
+        performer_form = PerformerForm()
+        profile_form = PerformerProfileForm()
+
+    return render(request,
+        'Gigstop/performer_registration.html',
+        {'performer_form': performer_form, 'profile_form': profile_form, 'registered': registered})
 
 
 def add_event(request):

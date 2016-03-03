@@ -1,26 +1,13 @@
 {% extends 'Gigstop/base.html' %}
 
+{% block title %}Register with Gigstop{% endblock %}
+
 {% block body_block %}
-        <h1>Register with GigSpot</h1>
-
-        {% if registered %}
-         <strong>thank you for registering!</strong>
-        <a href="/app/">Return to the homepage.</a><br />
-        {% else %}
-
-        <form id="user_form" method="post" action="/app/register/"
-                enctype="multipart/form-data">
-
-            {% csrf_token %}
-
-            <!-- Display each form. The as_p method wraps each element in a paragraph
-                 (<p>) element. This ensures each element appears on a new line,
-                 making everything look neater. -->
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-
-            <!-- Provide a button to click to submit the form. -->
-            <input type="submit" name="submit" value="Register" />
-        </form>
-        {% endif %}
+       <h1>Register with Gigstop</h1>
+       <h3>Register as a User</h3>
+       <a href="{% url 'user_registration' %}" id="user_reg">Register Here!</a>
+       <br/>
+       <br/>
+       <h3> Register as a Performer</h3>
+       <a href="{% url 'performer_registration' %}" id="performer_reg">Register Here!</a>
 {% endblock %}

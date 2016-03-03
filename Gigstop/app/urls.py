@@ -7,5 +7,7 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.user_login, name='login'),
 	url(r'^logout/$', views.user_logout, name='logout'),
 	url(r'^register/$', views.register, name='register'),
+	url(r'^user_registration/$', views.user_reg, name='user_registration'),
+	url(r'^performer_registration/$', views.performer_reg, name='performer_registration'),
 	url(r'^add_event/$', views.add_event, name='add_event'),
 	)
