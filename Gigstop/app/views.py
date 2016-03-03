@@ -100,7 +100,9 @@ def add_event(request):
 
         if event_form.is_valid():
 
-            Event = event_form.save(commit=False)
+            Event = event_form.save(commit=True)
+
+
             #Ticket = ticket_form.save(commit=True)
             
             return HttpResponse('Thank you your event has been added')
