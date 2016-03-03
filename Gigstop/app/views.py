@@ -4,10 +4,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
+from django.template import loader, RequestContext
 
 def index(request):
-	context_dict = {}
-	return render(request, 'Gigstop/index.html', context_dict)
+	
+
+    wallPopulate = Event.objects.order_by('-time')
+    template = loader.get_template('Gigstop/index.html')
+    context = RequestContext(request, {'wallPopulate':wallPopulate,})
+
+    # context_dict = {'Event':event}
+
+    return HttpResponse(template.render(context))
+    # return render(request, 'Gigstop/index.html')
 
 def about(request):
 	return render(request, 'Gigstop/about.html', {})
