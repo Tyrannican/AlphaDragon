@@ -14,3 +14,26 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('location',)
 
+
+class NewEventForm(forms.ModelForm):
+
+	# name = forms.CharField(max_length=128, unique=True)
+    # time = forms.DateTimeField()
+    # venue = forms.CharField(max_length=128)
+    # media = forms.URLField(Label='YouTube link')
+    # performer = forms.CharField(max_length=128, unique=True)
+    # sellTickets = forms.booleanField()
+
+	class Meta:
+		model = Event
+		fields = ('name','time','venue','media','performer')
+
+
+# class NewEventTicketsForm(forms.ModelForm):
+#     # price = forms.IntegerField()
+#     # event = forms.ForeignKey(default="0")
+#     # total = models.IntegerField()
+
+#     class Meta:
+#     	model = Ticket
+#     	fields = ('price','event', 'sold')
