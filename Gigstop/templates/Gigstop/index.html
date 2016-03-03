@@ -4,11 +4,17 @@
 
 {% block body_block %}
 
-		<div class="item">
-				<a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" rel="prettyPhoto" title="">
-				<!--<img src="https://img.youtube.com/vi/k_LAZjLi3RU/maxresdefault.jpg" alt="YouTube" title=""/></a>-->
+				{% if wallPopulate %}
+					<ul>
+						{% for Event in wallPopulate %}
+							<li><a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank"> {{ Event.media }} {{Event.name}} {{Event.venue}} </a> </li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					<p>There was an error!</p>
+				{% endif %}
 
-				<div class="caption">
+				<!-- <div class="caption">
 					<a id="bandPage" href="http://facebook.com" target="blank">MOTHERS CAKE</a>
 					<p id="genre">Alt Rock</p>
 					<p>King Tuts Whah Whah Hut</p>
@@ -16,7 +22,7 @@
 					<a id="videoPlay" rel="prettyphoto" href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank">PLAY</a>
 					<a id="buy" href="http://twitter.com" target="blank">BUY TICKETS</a>
 					<a id="interested" href="http://google.com" target="blank">I LIKE THIS!</a>
-				</div>
+				</div> -->
 		</div>
 
 {% endblock %}
