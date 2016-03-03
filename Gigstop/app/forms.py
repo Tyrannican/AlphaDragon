@@ -26,7 +26,7 @@ class NewEventForm(forms.ModelForm):
 
 	class Meta:
 		model = Event
-		fields = ('name','time','venue','media','performer')
+		fields = ('name','time','venue','media')
 
 
 # class NewEventTicketsForm(forms.ModelForm):
