@@ -10,6 +10,8 @@
 	            {% csrf_token %}
 
 	            {{ event_form.as_p }}
+	            
+	            {{ ticket_form.as_p }}
 
                 <br/>
              <button type="submit" name="submit">Create Event</button>
