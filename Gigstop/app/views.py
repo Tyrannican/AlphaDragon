@@ -1,7 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.decorators import login_required, user_passes_test
 from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
@@ -31,6 +32,8 @@ def user_login(request):
 		if user:
 			if user.is_active:
 				login(request, user)
+                                if is_member(user)==True:
+                                    return HttpResponseRedirect('/app/about/')
 				return HttpResponseRedirect('/app/')
 			else:
 				return HttpResponse('Your Gigstop account is disabled')
@@ -40,6 +43,10 @@ def user_login(request):
 	#GET
 	else:
 		return render(request, 'Gigstop/login.html', {})
+
+
+def is_member(user):
+    return user.groups.filter(name='Band').exists()
 
 @login_required
 def user_logout(request):
@@ -73,6 +80,8 @@ def user_reg(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
+            group = Group.objects.get(name='Band')
+            user.groups.add(group)
 
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
@@ -99,6 +108,8 @@ def user_reg(request):
     return render(request,
             'Gigstop/user_registration.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+
+
 
 
 def performer_reg(request):
