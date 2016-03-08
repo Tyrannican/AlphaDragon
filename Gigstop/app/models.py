@@ -13,20 +13,20 @@ class Venue(models.Model):
 
 class UserProfile(models.Model):
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, null=True)
     location = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.user.username
 
 class Performer (models.Model):
-    user = models.OneToOneField(User)
+    performer = models.ForeignKey(User, null=True)
     paypal = models.CharField(max_length=128)
     media = models.URLField()
     genre = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.user.username
+        return self.performer.username
 
 class Event(models.Model):
 	

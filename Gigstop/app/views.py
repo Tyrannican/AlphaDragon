@@ -79,7 +79,7 @@ def user_reg(request):
             # This delays saving the model until we're ready to avoid integrity problems.
             profile = profile_form.save(commit=False)
             profile.user = user
-
+            profile.save()
             # Update our variable to tell the template registration was successful.
             registered = True
 
@@ -116,6 +116,7 @@ def performer_reg(request):
 
             profile = profile_form.save(commit=False)
             profile.performer = user
+            profile.save()
             registered = True
 
         else:
