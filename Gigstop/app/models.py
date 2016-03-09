@@ -21,6 +21,7 @@ class UserProfile(models.Model):
 
 class Performer (models.Model):
     performer = models.ForeignKey(User, null=True)
+    bandname = models.CharField(max_length=128,null=False)
     paypal = models.CharField(max_length=128)
     media = models.URLField()
     genre = models.CharField(max_length=128)
