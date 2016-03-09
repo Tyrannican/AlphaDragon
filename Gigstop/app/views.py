@@ -166,3 +166,9 @@ def add_event(request):
     return render(request, 'Gigstop/add_event.html', {'event_form':event_form, 'ticket_form':ticket_form})
 
 
+def performer_profile(request):
+    return render(request, 'Gigstop/performer_profile.html', {})
+
+
+def edit_profile(request):
+    return render(request, 'Gigstop/edit_profile.html', {})

@@ -10,4 +10,6 @@ urlpatterns = patterns('',
 	url(r'^user_registration/$', views.user_reg, name='user_registration'),
 	url(r'^performer_registration/$', views.performer_reg, name='performer_registration'),
 	url(r'^add_event/$', views.add_event, name='add_event'),
+	url(r'^performer_profile/$', views.performer_profile, name='performer_profile'),
+	url(r'^edit_profile/$', views.edit_profile, name='edit_profile'),
 	)

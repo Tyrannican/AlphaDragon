@@ -25,11 +25,11 @@
 						<ul id="toolbar">
 							<li><a href="{% url 'index' %}" id="Home">GIGSTOP</a></li>
 							<li><a href="{% url 'about' %}" id="buyTickets">About</a></li>
-							<li><a href="{% url 'add_event' %}" id="addEvent">AddEvent</a></li>
 							
 						{% if user.is_authenticated %}
-							<li><a href="#myAccount" id="interested">My Account</a></li>
 							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+							<li><a href="{% url 'performer_profile' %}" id="performer_profile">My Profile</a></li>
+							<li><a href="{% url 'add_event' %}" id="addEvent">AddEvent</a></li>
 						{%else %}
 							<li><a href="{% url 'login' %}" id="login">Login</a></li>
 							<li><a href="{% url 'register' %}" id="register">Register</a></li>
