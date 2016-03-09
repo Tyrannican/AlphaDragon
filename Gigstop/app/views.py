@@ -33,7 +33,7 @@ def user_login(request):
 			if user.is_active:
 				login(request, user)
                                 if is_member(user)==True:
-                                    return HttpResponseRedirect('/app/about/')
+                                    return HttpResponseRedirect('/app/performer_profile/')
 				return HttpResponseRedirect('/app/')
 			else:
 				return HttpResponse('Your Gigstop account is disabled')
@@ -80,8 +80,7 @@ def user_reg(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-            group = Group.objects.get(name='Band')
-            user.groups.add(group)
+            
 
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
@@ -124,6 +123,8 @@ def performer_reg(request):
 
             user.set_password(user.password)
             user.save()
+            group = Group.objects.get(name='Band')
+            user.groups.add(group)
 
             profile = profile_form.save(commit=False)
             profile.performer = user
