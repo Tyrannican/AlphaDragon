@@ -3,12 +3,15 @@ import datetime
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Gigstop.settings')
 
 import django
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 django.setup()
 
 from app.models import Venue,Event,Performer
 
 def populate():
+
+    group = add_group("Band")
+
     kingtuts = add_venue("King Tut's Wah Wah Hut",'272a St Vincent St, Glasgow G2 5RL','0141 221 5279','Glasgow')
 
 
@@ -51,6 +54,12 @@ def add_performer(username,email,password,bandname,paypal,media,genre):
 
     print "Inserted "+bandname
     return c
+
+def add_group(name):
+    g = Group.objects.get_or_create(name=name)
+    print "Created Band Group"
+    return g
+
 if __name__ == '__main__':
     print "Starting GigStop population script..."
     populate()

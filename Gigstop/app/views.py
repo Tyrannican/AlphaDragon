@@ -148,21 +148,21 @@ def add_event(request):
         
         # Bundle the ticket and event database updates in the same operation
         event_form = NewEventForm(data=request.POST)
-        ticket_form = NewEventTicketsForm(data=request.POST)
+        #ticket_form = NewEventTicketsForm(data=request.POST)
 
-        if event_form.is_valid() and ticket_form.is_valid():
+        if event_form.is_valid(): #and ticket_form.is_valid():
 
             Event = event_form.save(commit=True)
-            Ticket = ticket_form.save(commit=True)
+           # Ticket = ticket_form.save(commit=True)
 
             print 'Thanks'
             
             return HttpResponse('Thank you your event has been added')
         else:
-            print event_form.errors, ticket_form.errors
+            print event_form.errors #ticket_form.errors
     else:
         event_form = NewEventForm()
-        ticket_form = NewEventTicketsForm()
+        #ticket_form = NewEventTicketsForm()
 
     return render(request, 'Gigstop/add_event.html', {'event_form':event_form, 'ticket_form':ticket_form})
 

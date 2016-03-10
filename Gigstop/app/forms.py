@@ -45,4 +45,4 @@ class NewEventTicketsForm(forms.ModelForm):
 class PerformerProfileForm(forms.ModelForm):
     class Meta:
         model = Performer
-        fields = ('paypal', 'media', 'genre')
+        fields = ('bandname', 'paypal', 'media', 'genre')
