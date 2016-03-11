@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.decorators import login_required, user_passes_test
-from app.forms import UserForm, UserProfileForm, NewEventForm, NewEventTicketsForm, PerformerProfileForm
+from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
 
@@ -143,28 +143,26 @@ def performer_reg(request):
         {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
+@login_required
 def add_event(request):
     if request.method == 'POST':
-        
-        # Bundle the ticket and event database updates in the same operation
-        event_form = NewEventForm(data=request.POST)
-        #ticket_form = NewEventTicketsForm(data=request.POST)
+        event_form = AddEventForm(data=request.POST)
 
-        if event_form.is_valid(): #and ticket_form.is_valid():
+        if event_form.is_valid():
+            event = event_form.save(commit=False)
+            get_performer = User.objects.get(username=request.user.username)
+            performer = Performer.objects.get(performer=get_performer)
+            event.performer = performer
+            event.save()
 
-            Event = event_form.save(commit=True)
-           # Ticket = ticket_form.save(commit=True)
+            return HttpResponse("Cheers!")
 
-            print 'Thanks'
-            
-            return HttpResponse('Thank you your event has been added')
         else:
-            print event_form.errors #ticket_form.errors
+            print event_form.errors
     else:
-        event_form = NewEventForm()
-        #ticket_form = NewEventTicketsForm()
+        event_form = AddEventForm()
 
-    return render(request, 'Gigstop/add_event.html', {'event_form':event_form, 'ticket_form':ticket_form})
+    return render(request, 'Gigstop/add_event.html', {'event_form': event_form})
 
 
 def performer_profile(request):

@@ -27,7 +27,7 @@ class Performer (models.Model):
     genre = models.CharField(max_length=128)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.performer.username
+        return self.bandname
 
 class Event(models.Model):
 	

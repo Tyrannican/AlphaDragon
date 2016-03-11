@@ -14,20 +14,10 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ('location',)
 
-
-class NewEventForm(forms.ModelForm):
-
-    # name = forms.CharField(max_length=128, unique=True)
-    # time = forms.DateTimeField()
-    # venue = forms.CharField(max_length=128)
-    media = forms.URLField()
-    # performer = forms.CharField(max_length=128, unique=True)
-    performer =forms.CharField(widget=forms.HiddenInput(), required=False)
-
-    class Meta:
-        model = Event
-        fields = ('name','time','venue','media','performer')
-
+class AddEventForm(forms.ModelForm):
+	class Meta:
+		model = Event
+		exclude = ['performer']
 
 
 class NewEventTicketsForm(forms.ModelForm):
