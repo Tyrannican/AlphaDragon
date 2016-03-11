@@ -7,6 +7,7 @@ from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsFo
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
 
+#Index page view
 def index(request):
 	
 
@@ -19,9 +20,11 @@ def index(request):
     return HttpResponse(template.render(context))
     # return render(request, 'Gigstop/index.html')
 
+#About page vew
 def about(request):
 	return render(request, 'Gigstop/about.html', {})
 
+#user login view
 def user_login(request):
 	#POST
 	if request.method == 'POST':
@@ -44,21 +47,22 @@ def user_login(request):
 	else:
 		return render(request, 'Gigstop/login.html', {})
 
-
+#checks to see if a User is a band or not
 def is_member(user):
     return user.groups.filter(name='Band').exists()
 
+#Logout view
 @login_required
 def user_logout(request):
 	logout(request)
 
 	return HttpResponseRedirect('/app/')
 
-
+#Register view
 def register(request):
     return render(request, 'Gigstop/register.html', {})
    
-
+#User registration view
 def user_reg(request):
      # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
@@ -110,7 +114,7 @@ def user_reg(request):
 
 
 
-
+#Performer registration view
 def performer_reg(request):
     registered = False
 
@@ -143,6 +147,7 @@ def performer_reg(request):
         {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
+#Add event view for Performers only
 @login_required
 def add_event(request):
     if request.method == 'POST':
@@ -164,14 +169,25 @@ def add_event(request):
 
     return render(request, 'Gigstop/add_event.html', {'event_form': event_form})
 
+#Select event to edit event view for Performers only
+@login_required
+def pick_event_edit(request):
+    get_performer = User.objects.get(username=request.user.username)
+    performer = Performer.objects.get(performer=get_performer)
+    event_performer = Event.objects.all().filter(performer=performer)
+
+    return render(request, 'Gigstop/pick_event_edit.html', {'event': event_performer})
+
+#Edit selected event view
 @login_required
 def edit_event(request):
     return render(request, 'Gigstop/edit_event.html', {})
 
 
+#Performer profile page view
 def performer_profile(request):
     return render(request, 'Gigstop/performer_profile.html', {})
 
-
+#Edit performer profile page view
 def edit_profile(request):
     return render(request, 'Gigstop/edit_profile.html', {})
