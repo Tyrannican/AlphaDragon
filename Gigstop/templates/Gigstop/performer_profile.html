@@ -5,7 +5,8 @@
 {% block body_block %}
 	<div id="profile">
 		<p>Placeholder Page!</p><br/>
-		<a href="{% url 'edit_profile' %}" id="edit_profile">Edit Profile</a>
-		<a href="{% url 'add_event' %}" id="addEvent">AddEvent</a>
+		<a href="{% url 'edit_profile' %}" id="edit_profile">Edit Profile</a><br/>
+		<a href="{% url 'add_event' %}" id="addEvent">Add Event</a><br/>
+		<a href="{% url 'edit_event' %}" id="editEvent">Edit Event</a><br/>
 	</div>
 {% endblock %}
