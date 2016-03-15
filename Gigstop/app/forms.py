@@ -17,7 +17,7 @@ class UserProfileForm(forms.ModelForm):
 class AddEventForm(forms.ModelForm):
 	class Meta:
 		model = Event
-		exclude = ['performer']
+		exclude = ['performer', 'slug']
 
 
 class NewEventTicketsForm(forms.ModelForm):

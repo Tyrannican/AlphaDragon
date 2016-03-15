@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 
 class Venue(models.Model):
     name = models.CharField(max_length=128, unique=True)
@@ -31,15 +32,19 @@ class Performer (models.Model):
 
 class Event(models.Model):
 	
-    name = models.CharField(max_length=128, unique=True)
-    time = models.DateTimeField()
-    venue = models.ForeignKey(Venue)
-    media = models.URLField()
-    performer = models.ForeignKey(Performer)
-	
+        name = models.CharField(max_length=128, unique=True)
+        time = models.DateTimeField()
+        venue = models.ForeignKey(Venue)
+        media = models.URLField()
+        performer = models.ForeignKey(Performer)
+        slug = models.SlugField()
 
-    def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.name
+        def save(self, *args, **kwargs):
+            self.slug = slugify(self.name)
+            super(Event, self).save(*args, **kwargs)
+
+        def __unicode__(self):  #For Python 2, use __str__ on Python 3
+            return self.name
 
 
 class Ticket(models.Model):

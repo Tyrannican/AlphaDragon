@@ -1,7 +1,15 @@
 {% extends 'Gigstop/base.html' %}
 
-{% block title %} Edit Event {% endblock %}
+{% load staticfiles %}
+
+{% block title %}Select Event to Edit{% endblock %}
 
 {% block body_block %}
-	<p><strong>WORK IN PROGRESS</strong></p>
+	<p><strong>WORK IN PROGRESS</strong></p><br/>
+	<ul>
+	{% for e in event %}
+		<li><a href="{% url 'delete_event' e.slug %}"> {{ e.name }}</a></li>
+	{% endfor %}
+	</ul>
+	<a href="{% url 'index' %}" id="home">Back to Home</a>
 {% endblock %}

@@ -158,6 +158,7 @@ def add_event(request):
             get_performer = User.objects.get(username=request.user.username)
             performer = Performer.objects.get(performer=get_performer)
             event.performer = performer
+            event.slug = event.name
             event.save()
 
             return HttpResponse("Cheers!")
@@ -171,18 +172,19 @@ def add_event(request):
 
 #Select event to edit event view for Performers only
 @login_required
-def pick_event_edit(request):
+def edit_event(request):
     get_performer = User.objects.get(username=request.user.username)
     performer = Performer.objects.get(performer=get_performer)
     event_performer = Event.objects.all().filter(performer=performer)
 
-    return render(request, 'Gigstop/pick_event_edit.html', {'event': event_performer})
+    return render(request, 'Gigstop/edit_event.html', {'event': event_performer})
 
-#Edit selected event view
 @login_required
-def edit_event(request):
-    return render(request, 'Gigstop/edit_event.html', {})
+def delete_event(request, event_name_slug):
+    delete = Event.objects.get(slug=event_name_slug)
+    delete.delete()
 
+    return HttpResponseRedirect('/app/edit_event/')
 
 #Performer profile page view
 def performer_profile(request):
