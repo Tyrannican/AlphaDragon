@@ -163,7 +163,7 @@ def add_event(request):
             vcontact = event_form.cleaned_data['contact']
             vlocation =event_form.cleaned_data['location']
 
-            v = Venue.objects.get_or_create(name=vname,address=vAddress,contact=vcontact,location=vlocation)
+            v = Venue.objects.get_or_create(name=vname,address=vAddress,contact=vcontact,location=vlocation)[0]
             event.venue = v
             get_performer = User.objects.get(username=request.user.username)
             performer = Performer.objects.get(performer=get_performer)
