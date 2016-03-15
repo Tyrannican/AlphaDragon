@@ -158,6 +158,7 @@ def add_event(request):
             event.name =event_form.cleaned_data['name']
             dT = datetime.combine(event_form.cleaned_data['eventDate'], event_form.cleaned_data['eventTime'])
             event.time = dT
+            event.no_tickets = event_form.cleaned_data['no_tickets']
             vname = event_form.cleaned_data['venueName']
             vAddress = event_form.cleaned_data['address']
             vcontact = event_form.cleaned_data['contact']

@@ -38,6 +38,7 @@ class Event(models.Model):
         media = models.URLField()
         performer = models.ForeignKey(Performer)
         slug = models.SlugField()
+        no_tickets = models.IntegerField(default=0)
 
         def save(self, *args, **kwargs):
             self.slug = slugify(self.name)
