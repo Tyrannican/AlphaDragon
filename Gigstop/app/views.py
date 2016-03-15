@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsForm, PerformerProfileForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
+from datetime import datetime ,date , time
 
 #Index page view
 def index(request):
@@ -148,17 +149,25 @@ def performer_reg(request):
 
 
 #Add event view for Performers only
-@login_required
 def add_event(request):
     if request.method == 'POST':
         event_form = AddEventForm(data=request.POST)
 
         if event_form.is_valid():
-            event = event_form.save(commit=False)
+            event = Event()
+            event.name =event_form.cleaned_data['name']
+            dT = datetime.combine(event_form.cleaned_data['eventDate'], event_form.cleaned_data['eventTime'])
+            event.time = dT
+            vname = event_form.cleaned_data['venueName']
+            vAddress = event_form.cleaned_data['address']
+            vcontact = event_form.cleaned_data['contact']
+            vlocation =event_form.cleaned_data['location']
+
+            v = Venue.objects.get_or_create(name=vname,address=vAddress,contact=vcontact,location=vlocation)
+            event.venue = v
             get_performer = User.objects.get(username=request.user.username)
             performer = Performer.objects.get(performer=get_performer)
             event.performer = performer
-            event.slug = event.name
             event.save()
 
             return HttpResponse("Cheers!")
