@@ -164,14 +164,17 @@ def add_event(request):
             vcontact = event_form.cleaned_data['contact']
             vlocation =event_form.cleaned_data['location']
 
-            v = Venue.objects.get_or_create(name=vname,address=vAddress,contact=vcontact,location=vlocation)[0]
+            try:
+            	v = Venue.objects.get(name=vname)
+            except:
+				v = Venue.objects.create(name=vname,address=vAddress,contact=vcontact,location=vlocation)
             event.venue = v
             get_performer = User.objects.get(username=request.user.username)
             performer = Performer.objects.get(performer=get_performer)
             event.performer = performer
             event.save()
 
-            return HttpResponse("Cheers!")
+            return HttpResponseRedirect('/app/performer_profile/')
 
         else:
             print event_form.errors

@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 
 class Venue(models.Model):
-    name = models.CharField(max_length=128, unique=True)
+    name = models.CharField(max_length=128)
     address = models.CharField(max_length=256)
     contact = models.CharField(max_length=256)
     location = models.CharField(max_length=128)

@@ -21,8 +21,8 @@ class AddEventForm(forms.Form):
     eventDate = forms.DateField(required=True)
     eventTime =forms.TimeField(required=True)
     venueName = forms.CharField(required=True)
-    address = forms.CharField(required=True)
-    contact = forms.CharField(required=True)
+    address = forms.CharField(required=False)
+    contact = forms.CharField(required=False)
     location = forms.CharField(required=True)
     no_tickets = forms.IntegerField()
 
