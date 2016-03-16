@@ -39,6 +39,7 @@ class Event(models.Model):
         performer = models.ForeignKey(Performer)
         slug = models.SlugField()
         no_tickets = models.IntegerField(default=0)
+        price = models.IntegerField(default=0)
 
         def save(self, *args, **kwargs):
             self.slug = slugify(self.name)
@@ -51,7 +52,8 @@ class Event(models.Model):
 class Ticket(models.Model):
     price = models.IntegerField(max_length=100000)
     event = models.ForeignKey(Event)
-    sold = models.IntegerField(max_length=1)
+    user = models.ForeignKey(User)
+    quantity = models.IntegerField(max_length=3)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.price

@@ -192,6 +192,7 @@ def edit_event(request):
 
     return render(request, 'Gigstop/edit_event.html', {'event': event_performer})
 
+#Delete event view for Performers
 @login_required
 def delete_event(request, event_name_slug):
     delete = Event.objects.get(slug=event_name_slug)
@@ -206,3 +207,10 @@ def performer_profile(request):
 #Edit performer profile page view
 def edit_profile(request):
     return render(request, 'Gigstop/edit_profile.html', {})
+
+
+#Purchase tickets for selected Event view
+def buy_tickets(request, event_name_slug):
+	event = Event.objects.get(slug=event_name_slug)
+
+	return render(request, 'Gigstop/buy_tickets.html', {'event': event})

@@ -30,17 +30,17 @@ def populate():
     Biffy_Clyro = add_performer('biffy','biffyclyro@gmail.com','password',"Biffy Clyro",'biffyclyro@gmail.com','https://youtu.be/YCG_yP5MsMc', 'Pop Rock')
     CHVRCHES = add_performer('chvrches','chvrches@gmail.com','password',"CHVRCHES",'chvrches@gmail.com','https://youtu.be/JyqemIbjcfg','Psychadelic Funk Rap')
 
-    event1 = add_event('Celtic Connections',datetime.datetime(2016, 2, 28, 12, 26),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Django Django123"))
-    event2 = add_event('Gig Apocalypse',datetime.datetime(2016, 2, 27, 20, 30),Venue.objects.get(name="Mono"),'',Performer.objects.get(bandname="Admiral Fallow"))
-    event3 = add_event('Fun in the Sun',datetime.datetime(2016, 2, 27, 20, 30),Venue.objects.get(name="Kelvingrove Bandstand"),'',Performer.objects.get(bandname="Biffy Clyro"))
-    event4 = add_event('West End Festival',datetime.datetime(2016, 2, 26, 21, 30),Venue.objects.get(name="Old Fruitmarket"),'',Performer.objects.get(bandname="CHVRCHES"))
-    event5 = add_event('Jazz Festival',datetime.datetime(2016, 2, 26, 21, 30),Venue.objects.get(name="King Tut's Wah Wah Hut"),'',Performer.objects.get(bandname="Frightened Rabbit"))
+    event1 = add_event('Celtic Connections',datetime.datetime(2016, 2, 28, 12, 26),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Django Django123"),40, 8)
+    event2 = add_event('Gig Apocalypse',datetime.datetime(2016, 2, 27, 20, 30),Venue.objects.get(name="Mono"),'',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
+    event3 = add_event('Fun in the Sun',datetime.datetime(2016, 2, 27, 20, 30),Venue.objects.get(name="Kelvingrove Bandstand"),'',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
+    event4 = add_event('West End Festival',datetime.datetime(2016, 2, 26, 21, 30),Venue.objects.get(name="Old Fruitmarket"),'',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
+    event5 = add_event('Jazz Festival',datetime.datetime(2016, 2, 26, 21, 30),Venue.objects.get(name="King Tut's Wah Wah Hut"),'',Performer.objects.get(bandname="Frightened Rabbit"), 50, 12.50)
 
 
 
 
-def add_event(name,time,venue,media,performer):
-    c = Event.objects.get_or_create(name=name,time=time,venue=venue,performer=performer)
+def add_event(name,time,venue,media,performer,no_tickets,price):
+    c = Event.objects.get_or_create(name=name,time=time,venue=venue,performer=performer,no_tickets=no_tickets,price=price)
 
 def add_venue(name,address,contact,location):
     c = Venue.objects.get_or_create(name=name,address=address,contact=contact,location=location)[0]
