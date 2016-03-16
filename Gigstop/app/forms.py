@@ -40,9 +40,13 @@ class NewEventTicketsForm(forms.ModelForm):
     	fields = ('price','event', 'sold')
 
 
-
-
 class PerformerProfileForm(forms.ModelForm):
     class Meta:
         model = Performer
         fields = ('bandname', 'paypal', 'media', 'genre')
+
+
+class PurchaseTicketForm(forms.ModelForm):
+    class Meta:
+        model = Ticket
+        exclude = ['price', 'event', 'user']

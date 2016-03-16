@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.decorators import login_required, user_passes_test
-from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsForm, PerformerProfileForm
+from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsForm, PerformerProfileForm, PurchaseTicketForm
 from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
 from django.template import loader, RequestContext
 from datetime import datetime ,date , time
@@ -213,4 +213,18 @@ def edit_profile(request):
 def buy_tickets(request, event_name_slug):
 	event = Event.objects.get(slug=event_name_slug)
 
-	return render(request, 'Gigstop/buy_tickets.html', {'event': event})
+	if request.method == 'POST':
+		buy_form = PurchaseTicketForm(data=request.POST)
+
+		if buy_form.is_valid:
+			ticket = buy_form.save(commit=False)
+			ticket.event = event
+			ticket.price = event.price
+			ticket.user = User.objects.get(username=request.user.username)
+			ticket.save()
+		else:
+			print buy_form.errors
+	else:
+		buy_form = PurchaseTicketForm()
+
+	return render(request, 'Gigstop/buy_tickets.html', {'event': event, 'buy_form': buy_form})

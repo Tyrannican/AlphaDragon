@@ -12,4 +12,9 @@
 		<li> Performer: <strong>{{ event.performer }}</strong></li>
 		<li> Ticket Price: <strong>${{ event.price }}</strong></li>
 	</ul>
+	<form id="buy_tickets" method="post" action="{% url 'buy_tickets' event.slug %}">
+		{% csrf_token %}
+		{{ buy_form.as_p }}
+		<br/>
+		<button type="submit" name="submit">Purchase Tickets!</button>
 {% endblock %}
