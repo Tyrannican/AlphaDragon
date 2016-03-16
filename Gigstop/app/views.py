@@ -209,22 +209,28 @@ def edit_profile(request):
     return render(request, 'Gigstop/edit_profile.html', {})
 
 
-#Purchase tickets for selected Event view
+#Purchase Tickets view
 def buy_tickets(request, event_name_slug):
-	event = Event.objects.get(slug=event_name_slug)
+    event = Event.objects.get(slug=event_name_slug)
 
-	if request.method == 'POST':
-		buy_form = PurchaseTicketForm(data=request.POST)
+    if request.method == 'POST':
+        buy_form = PurchaseTicketForm(data=request.POST)
 
-		if buy_form.is_valid:
-			ticket = buy_form.save(commit=False)
-			ticket.event = event
-			ticket.price = event.price
-			ticket.user = User.objects.get(username=request.user.username)
-			ticket.save()
-		else:
-			print buy_form.errors
-	else:
-		buy_form = PurchaseTicketForm()
+        if buy_form.is_valid:
+            ticket = buy_form.save(commit=False)
+            ticket.event = event
+            ticket.price = event.price
+            ticket.user = User.objects.get(username=request.user.username)
+            ticket.save()
+            return HttpResponseRedirect('/app/thanks/')
+        else:
+            print buy_form.errors
+    else:
+        buy_form = PurchaseTicketForm()
 
-	return render(request, 'Gigstop/buy_tickets.html', {'event': event, 'buy_form': buy_form})
+    return render(request, 'Gigstop/buy_tickets.html', {'event': event, 'buy_form': buy_form})
+
+
+#Thank you view
+def thanks(request):
+    return render(request, 'Gigstop/thanks.html', {})

@@ -56,7 +56,7 @@ class Ticket(models.Model):
     quantity = models.IntegerField(max_length=3)
 
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
-        return self.price
+        return self.event.name
 		
 class Rating (models.Model):
     user = models.ForeignKey(User)
