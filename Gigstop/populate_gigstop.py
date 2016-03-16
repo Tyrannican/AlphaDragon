@@ -49,6 +49,8 @@ def add_venue(name,address,contact,location):
 
 def add_performer(username,email,password,bandname,paypal,media,genre):
     b = User.objects.get_or_create(username=username,email=email,password=password)
+    b.set_password(password)
+    b.save()
     perfomer_id = User.objects.get(username=username).id
     c = Performer.objects.get_or_create(performer_id=perfomer_id,bandname=bandname,paypal=paypal,media=media,genre=genre)
 
