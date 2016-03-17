@@ -238,3 +238,7 @@ def buy_tickets(request, event_name_slug):
 #Thank you view
 def thanks(request):
     return render(request, 'Gigstop/thanks.html', {})
+
+def show_tickets(request,event_id):
+    list_of_tickets = Ticket.objects.filter(id=event_id)
+    return render(request,'Gigstop/showtickets.html', {'tickets': list_of_tickets})
