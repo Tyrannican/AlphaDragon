@@ -32,7 +32,7 @@ class Performer (models.Model):
 
 class Event(models.Model):
 	
-        name = models.CharField(max_length=128, unique=True)
+        name = models.CharField(max_length=128, unique=False)
         time = models.DateTimeField()
         venue = models.ForeignKey(Venue)
         media = models.URLField()

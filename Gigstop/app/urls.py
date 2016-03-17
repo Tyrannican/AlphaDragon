@@ -15,5 +15,6 @@ urlpatterns = patterns('',
 	url(r'^edit_event/(?P<event_name_slug>[\w\-]+)/$', views.delete_event, name='delete_event'),
 	url(r'^edit_event/$', views.edit_event, name='edit_event'),
 	url(r'^buy_tickets/(?P<event_name_slug>[\w\-]+)/$', views.buy_tickets, name='buy_tickets'),
+	url(r'^showtickets/(?P<event_id>[\w\-]+)/$', views.show_tickets, name='showtickets'),
 	url(r'^thanks/$', views.thanks, name='thanks')
 	)

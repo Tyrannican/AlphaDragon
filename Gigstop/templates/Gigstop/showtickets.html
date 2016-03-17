@@ -1,0 +1,19 @@
+{% extends 'Gigstop/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Tickets for Event{% endblock %}
+
+{% block body_block %}
+	<p><strong>WORK IN PROGRESS</strong></p><br/>
+		{% if tickets %}
+		<ul>
+			{% for Ticket in tickets %}
+			 {{Ticket.user}} {{Ticket.price}} {{Ticket.quantity}}
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>You have no events!</p>
+		{% endif %}
+	<a href="{% url 'index' %}" id="home">Back to Home</a>
+{% endblock %}

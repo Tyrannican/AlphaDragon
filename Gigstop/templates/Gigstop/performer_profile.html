@@ -4,9 +4,17 @@
 
 {% block body_block %}
 	<div id="profile">
-		<p>Placeholder Page!</p><br/>
-		<a href="{% url 'edit_profile' %}" id="edit_profile">Edit Profile</a><br/>
-		<a href="{% url 'add_event' %}" id="addEvent">Add Event</a><br/>
-		<a href="{% url 'edit_event' %}" id="pickEvent">Delete Events</a><br/>
+		<h2>Welcome {{bandname}} </h2><br/>
+		{% if events %}
+		<ul>
+			{% for Event in events %}
+			 {{Event.name}} {{Event.venue}} {{Event.venue}}{{Event.no_tickets}} <li><a href="{% url 'delete_event' Event.slug %}"> Delete Event</a></li>
+			<a href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br>
+			{% endfor %}
+		</ul>
+		{% else %}
+		<p>You have sold no tickets for this event!</p>
+		{% endif %}
 	</div>
+	<a href="{% url 'add_event' %}" id="addEvent">Add Event</a><br/>
 {% endblock %}
