@@ -176,11 +176,13 @@ def edit_event(request):
 
 #Delete event view for Performers
 @login_required
-def delete_event(request, event_name_slug):
-    delete = Event.objects.get(slug=event_name_slug)
+def delete_event(request, event_id):
+    delete = Event.objects.get(id=event_id)
+    remove_tickets = Ticket.objects.all().filter(event=event_id)
     delete.delete()
+    remove_tickets.delete()
 
-    return HttpResponseRedirect('/app/edit_event/')
+    return HttpResponseRedirect('/app/performer_profile/')
 
 #Performer profile page view
 def performer_profile(request):

@@ -9,7 +9,10 @@
 		{% if tickets %}
 		<ul>
 			{% for Ticket in tickets %}
-			 {{Ticket.user}} {{Ticket.price}} {{Ticket.quantity}}
+			 <strong>User: {{Ticket.user}}</strong><br/>
+			 <strong>User Email: {{ Ticket.user.email }}</strong><br/>
+			 <strong>Price: ${{Ticket.price}}</strong><br/>
+			 <strong>Tickets purchased: {{Ticket.quantity}} </strong><br/>
 			{% endfor %}
 		</ul>
 		{% else %}

@@ -8,7 +8,7 @@
 		{% if events %}
 		<ul>
 			{% for Event in events %}
-			 {{Event.name}} {{Event.venue}} {{Event.venue}}{{Event.no_tickets}} <li><a href="{% url 'delete_event' Event.slug %}"> Delete Event</a></li>
+			 {{Event.name}} {{Event.venue}} {{Event.venue}}{{Event.no_tickets}} <li><a href="{% url 'delete_event' Event.id %}"> Delete Event</a></li>
 			<a href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br>
 			{% endfor %}
 		</ul>
