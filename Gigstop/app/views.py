@@ -222,6 +222,10 @@ def buy_tickets(request, event_name_slug):
             ticket.price = event.price
             ticket.user = User.objects.get(username=request.user.username)
             ticket.save()
+
+            decrement = ticket.quantity
+            no_tickets = event.no_tickets
+            newTickets = Event.objects.filter(slug=event_name_slug).update(no_tickets=no_tickets-decrement)
             return HttpResponseRedirect('/app/thanks/')
         else:
             print buy_form.errors
