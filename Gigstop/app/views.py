@@ -202,7 +202,13 @@ def delete_event(request, event_name_slug):
 
 #Performer profile page view
 def performer_profile(request):
-    return render(request, 'Gigstop/performer_profile.html', {})
+    get_performer = User.objects.get(username=request.user.username)
+    performer = Performer.objects.get(performer=get_performer)
+    event_performer = Event.objects.all().filter(performer=performer)
+    bandname = performer.bandname
+    context_dict = {'events': event_performer}
+    context_dict['bandname']= bandname
+    return render(request, 'Gigstop/performer_profile.html',context_dict )
 
 #Edit performer profile page view
 def edit_profile(request):
