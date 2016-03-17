@@ -69,10 +69,7 @@ def user_reg(request):
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
 
-    # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
-        # Attempt to grab information from the raw form information.
-        # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
         profile_form = UserProfileForm(data=request.POST)
 
@@ -80,35 +77,20 @@ def user_reg(request):
         if user_form.is_valid() and profile_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
-
-            # Now we hash the password with the set_password method.
-            # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-            
-
-            # Now sort out the UserProfile instance.
-            # Since we need to set the user attribute ourselves, we set commit=False.
-            # This delays saving the model until we're ready to avoid integrity problems.
             profile = profile_form.save(commit=False)
             profile.user = user
             profile.save()
-            # Update our variable to tell the template registration was successful.
             registered = True
 
-        # Invalid form or forms - mistakes or something else?
-        # Print problems to the terminal.
-        # They'll also be shown to the user.
         else:
             print user_form.errors, profile_form.errors
 
-    # Not a HTTP POST, so we render our form using two ModelForm instances.
-    # These forms will be blank, ready for user input.
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    # Render the template depending on the context.
     return render(request,
             'Gigstop/user_registration.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
@@ -216,8 +198,8 @@ def edit_profile(request):
 
 
 #Purchase Tickets view
-def buy_tickets(request, event_name_slug):
-    event = Event.objects.get(slug=event_name_slug)
+def buy_tickets(request, event_id):
+    event = Event.objects.get(id=event_id)
 
     if request.method == 'POST':
         buy_form = PurchaseTicketForm(data=request.POST)
@@ -231,7 +213,7 @@ def buy_tickets(request, event_name_slug):
 
             decrement = ticket.quantity
             no_tickets = event.no_tickets
-            newTickets = Event.objects.filter(slug=event_name_slug).update(no_tickets=no_tickets-decrement)
+            newTickets = Event.objects.filter(id=event_id).update(no_tickets=no_tickets-decrement)
             return HttpResponseRedirect('/app/thanks/')
         else:
             print buy_form.errors
@@ -246,5 +228,5 @@ def thanks(request):
     return render(request, 'Gigstop/thanks.html', {})
 
 def show_tickets(request,event_id):
-    list_of_tickets = Ticket.objects.filter(id=event_id)
+    list_of_tickets = Ticket.objects.filter(event_id=event_id)
     return render(request,'Gigstop/showtickets.html', {'tickets': list_of_tickets})

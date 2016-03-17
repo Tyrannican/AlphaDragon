@@ -5,7 +5,7 @@
 {% block title %}Tickets for Event{% endblock %}
 
 {% block body_block %}
-	<p><strong>WORK IN PROGRESS</strong></p><br/>
+	<p><strong>Tickets Sold</strong></p><br/>
 		{% if tickets %}
 		<ul>
 			{% for Ticket in tickets %}
@@ -13,7 +13,7 @@
 			{% endfor %}
 		</ul>
 		{% else %}
-		<p>You have no events!</p>
+		<p>You haven't sold any tickets for this event</p>
 		{% endif %}
 	<a href="{% url 'index' %}" id="home">Back to Home</a>
 {% endblock %}

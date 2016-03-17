@@ -7,7 +7,7 @@
 				{% if wallPopulate %}
 					<ul>
 						{% for Event in wallPopulate %}
-							<li><a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank"> {{ Event.media }} {{Event.name}} {{Event.venue}} </a> <br/><a href="{% url 'buy_tickets' Event.slug %}" id="buy"> Buy Tickets! </a></li><br/>
+							<li><a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank"> {{ Event.media }} {{Event.name}} {{Event.venue}} </a> <br/><a href="{% url 'buy_tickets' Event.id %}" id="buy"> Buy Tickets! </a></li><br/>
 						{% endfor %}
 					</ul>
 				{% else %}
