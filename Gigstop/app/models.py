@@ -49,9 +49,12 @@ class Event(models.Model):
                 performerid = Performer.objects.get(id =user.id)
                 video = performerid.media
                 str = "https://www.youtube.com/watch?v=k_LAZjLi3"
-            url_data = urlparse.urlparse(video)
-            query = urlparse.parse_qs(url_data.query)
-            result = query["v"][0]
+            try:
+                url_data = urlparse.urlparse(video)
+                query = urlparse.parse_qs(url_data.query)
+                result = query["v"][0]
+            except:
+                result ="";
             return result
 
         def save(self, *args, **kwargs):
