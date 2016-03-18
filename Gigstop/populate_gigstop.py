@@ -11,7 +11,7 @@ from app.models import Venue,Event,Performer,UserProfile,Ticket
 def populate():
 
     group = add_group("Band")
-
+#Add Venues
     kingtuts = add_venue("King Tut's Wah Wah Hut",'272a St Vincent St, Glasgow G2 5RL','0141 221 5279','Glasgow')
     Stereo = add_venue("Stereo",'22-28 Renfield Lane, Glasgow G2 5AR','0141 222 2254','Glasgow')
     Mono = add_venue("Mono",'12 Kings Court, Glasgow G1 5RB','0141 553 240054','Glasgow')
@@ -39,7 +39,7 @@ def populate():
     drummonds = add_venue("Cafe Drummonds","1 Belmont St, Aberdeen, Grampian AB10 1JR",'01224 619930','Aberdeen')
     lemontree = add_venue("The Lemon Tree","5 W N St, Aberdeen AB24 5AT",'01224 337688','Aberdeen')
 
-
+#Add Performers
     performer = add_performer('django1235','django@gmail.com','password','Django Django','django@gmail.com','https://youtu.be/9bRR7yo-2UQ','Death Metal')
     Admiral_Fallow = add_performer('admiral','admiralfallow@gmail.com','password',"Admiral Fallow",'admiralfallow@gmail.com','https://youtu.be/oH9IDgyjr4E', 'Folk')
     Frightened_Rabbit = add_performer('rabbit','frightenedrabit@gmail.com','password',"Frightened Rabbit",'frightenedrabit@gmail.com','https://youtu.be/k-YLMT6qqT4', 'Death Metal')
@@ -52,7 +52,7 @@ def populate():
     benders = add_performer('benders','benders@gmail.com','password','The Morning Benders','benders@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0&feature=youtu.be','Folk')
     lianne = add_performer('lianne','liannelahavas@gmail.com','password','Lianne La Havas','liannelahavas@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0&feature=youtu.be','Folk')
 
-
+#Add Events
     event1 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 12, 26),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Django Django"),40, 8)
     event2 = add_event('Gig Apocalypse',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Mono"),'',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
     event3 = add_event('Fun in the Sun',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Kelvingrove Bandstand"),'',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
@@ -83,6 +83,7 @@ def populate():
     edinburgh4 = add_event('Lianne La Havas Plays',datetime.datetime(2016, 3, 30, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Lianne La Havas"), 50, 10)
     edinburgh5 = add_event('Squealing Pigs',datetime.datetime(2016, 4, 2, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Admiral Fallow"), 50, 12.50)
 
+#Add Users
     leif = add_user('leif','leif.azzopardi@glasgow.ac.uk','leif','Glasgow')
     laura = add_user('laura','laura@glasgow.ac.uk','laura','Glasgow')
     david = add_user('david','david@glasgow.ac.uk','david','Glasgow')
@@ -90,6 +91,7 @@ def populate():
     graham = add_user('graham','grahamkeenan@hotmail.co.uk','graham','Glasgow')
     chris = add_user('chris','christopher.melville@me.com','chris','Glasgow')
 
+#Add Tickets
     addtickets = insert_tickets(User.objects.get(username='patrick'),2)
     addtickets = insert_tickets(User.objects.get(username='leif'),1)
     addtickets = insert_tickets(User.objects.get(username='laura'),2)
@@ -115,6 +117,8 @@ def add_performer(username,email,password,bandname,paypal,media,genre):
     b.save()
     perfomer_id = User.objects.get(username=username).id
     c = Performer.objects.get_or_create(performer_id=perfomer_id,bandname=bandname,paypal=paypal,media=media,genre=genre)
+    group = Group.objects.get(name='Band')
+    b.groups.add(group)
 
     print "Inserted "+bandname
     return c
