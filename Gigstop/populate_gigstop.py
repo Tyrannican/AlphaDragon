@@ -6,7 +6,7 @@ import django
 from django.contrib.auth.models import User, Group
 django.setup()
 
-from app.models import Venue,Event,Performer
+from app.models import Venue,Event,Performer,UserProfile,Ticket
 
 def populate():
 
@@ -83,13 +83,26 @@ def populate():
     edinburgh4 = add_event('Lianne La Havas Plays',datetime.datetime(2016, 3, 30, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Lianne La Havas"), 50, 10)
     edinburgh5 = add_event('Squealing Pigs',datetime.datetime(2016, 4, 2, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Admiral Fallow"), 50, 12.50)
 
+    leif = add_user('leif','leif.azzopardi@glasgow.ac.uk','leif','Glasgow')
+    laura = add_user('laura','laura@glasgow.ac.uk','laura','Glasgow')
+    david = add_user('david','david@glasgow.ac.uk','david','Glasgow')
+    patrick = add_user('patrick','9500143G@student.gla.ac.uk','patrick','Glasgow')
+    graham = add_user('graham','grahamkeenan@hotmail.co.uk','graham','Glasgow')
+    chris = add_user('chris','christopher.melville@me.com','chris','Glasgow')
 
+    addtickets = insert_tickets(User.objects.get(username='patrick'),2)
+    addtickets = insert_tickets(User.objects.get(username='leif'),1)
+    addtickets = insert_tickets(User.objects.get(username='laura'),2)
+    addtickets = insert_tickets(User.objects.get(username='david'),3)
+    addtickets = insert_tickets(User.objects.get(username='graham'),4)
+    addtickets = insert_tickets(User.objects.get(username='chris'),5)
 
 
 
 
 def add_event(name,time,venue,media,performer,no_tickets,price):
     c = Event.objects.get_or_create(name=name,time=time,venue=venue,performer=performer,no_tickets=no_tickets,price=price)
+
 
 def add_venue(name,address,contact,location):
     c = Venue.objects.get_or_create(name=name,address=address,contact=contact,location=location)[0]
@@ -110,6 +123,29 @@ def add_group(name):
     g = Group.objects.get_or_create(name=name)
     print "Created Band Group"
     return g
+
+
+def add_user(username,email,password,location):
+    b, created = User.objects.get_or_create(username=username,email=email,password=password)
+    b.set_password(password)
+    b.save()
+    thisuser = User.objects.get(username=username)
+    c = UserProfile.objects.get_or_create(user=thisuser,location=location)
+    return c
+
+def insert_tickets(user,no_tickets):
+        events = Event.objects.all()
+        for e in events:
+            ticket = Ticket()
+            ticket.event = e
+            ticket.price = e.price
+            ticket.quantity = no_tickets
+            ticket.user = User.objects.get(username=user.username)
+            ticket.save()
+
+
+
+
 
 
 if __name__ == '__main__':
