@@ -10,7 +10,7 @@
 		<li> Date: <strong>{{ event.time }}</strong></li>
 		<li> Venue: <strong>{{ event.venue }}</strong></li>
 		<li> Performer: <strong>{{ event.performer }}</strong></li>
-		<li> Ticket Price: <strong>${{ event.price }}</strong></li>
+		<li> Ticket Price: <strong>£{{ event.price }}</strong></li>
 	</ul>
 	<form id="buy_tickets" method="post" action="{% url 'buy_tickets' event.id %}">
 		{% csrf_token %}
