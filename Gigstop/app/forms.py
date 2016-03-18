@@ -25,6 +25,7 @@ class AddEventForm(forms.Form):
     contact = forms.CharField(required=False)
     location = forms.CharField(required=True)
     no_tickets = forms.IntegerField()
+    price = forms.IntegerField()
 
     class Meta:
 		fields = ('name','eventDate','eventTime','VenueName', 'Media',)

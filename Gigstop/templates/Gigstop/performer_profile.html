@@ -8,8 +8,12 @@
 		{% if events %}
 		<ul>
 			{% for Event in events %}
-			 {{Event.name}} {{Event.venue}} {{Event.venue}}{{Event.no_tickets}} <li><a href="{% url 'delete_event' Event.id %}"> Delete Event</a></li>
-			<a href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br>
+			 <li><strong>Event: {{Event.name}}</strong><br/>
+			 <strong>Location: {{Event.venue}}</strong><br/> 
+			 <strong>Media: {{Event.media}}</strong><br/>
+			 <strong>Tickets Available: {{Event.no_tickets}}</strong><br/>
+			 <a href="{% url 'delete_event' Event.id %}"> Delete Event</a><br/>
+			<a href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br/>
 			{% endfor %}
 		</ul>
 		{% else %}
