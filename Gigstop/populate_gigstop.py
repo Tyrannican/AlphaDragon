@@ -40,17 +40,17 @@ def populate():
     lemontree = add_venue("The Lemon Tree","5 W N St, Aberdeen AB24 5AT",'01224 337688','Aberdeen')
 
 #Add Performers
-    performer = add_performer('django1235','django@gmail.com','password','Django Django','django@gmail.com','https://youtu.be/9bRR7yo-2UQ','Death Metal')
-    Admiral_Fallow = add_performer('admiral','admiralfallow@gmail.com','password',"Admiral Fallow",'admiralfallow@gmail.com','https://youtu.be/oH9IDgyjr4E', 'Folk')
-    Frightened_Rabbit = add_performer('rabbit','frightenedrabit@gmail.com','password',"Frightened Rabbit",'frightenedrabit@gmail.com','https://youtu.be/k-YLMT6qqT4', 'Death Metal')
-    Biffy_Clyro = add_performer('biffy','biffyclyro@gmail.com','password',"Biffy Clyro",'biffyclyro@gmail.com','https://youtu.be/YCG_yP5MsMc', 'Pop Rock')
-    CHVRCHES = add_performer('chvrches','chvrches@gmail.com','password',"CHVRCHES",'chvrches@gmail.com','https://youtu.be/JyqemIbjcfg','Psychadelic Funk Rap')
-    cascada = add_performer('cascada','cascada@gmail.com','password','Cascada','cascada@gmail.com','https://www.youtube.com/watch?v=k7JTClfWtTQ&index=6&list=PL0123413BF155A284','Rock')
-    wethesame = add_performer('wethesame','wethesame@gmail.com','password','We, The Same','wethesame@gmail.com','https://www.youtube.com/watch?v=7tgIVjNLcdk&index=8&list=PL0123413BF155A284','Rock')
+    performer = add_performer('django1235','django@gmail.com','password','Django Django','django@gmail.com','https://www.youtube.com/watch?v=9bRR7','Death Metal')
+    Admiral_Fallow = add_performer('admiral','admiralfallow@gmail.com','password',"Admiral Fallow",'admiralfallow@gmail.com','https://www.youtube.com/watch?v=oH9IDgyjr4E', 'Folk')
+    Frightened_Rabbit = add_performer('rabbit','frightenedrabit@gmail.com','password',"Frightened Rabbit",'frightenedrabit@gmail.com','https://www.youtube.com/watch?v=k-YLMT6qqT4', 'Death Metal')
+    Biffy_Clyro = add_performer('biffy','biffyclyro@gmail.com','password',"Biffy Clyro",'biffyclyro@gmail.com','https://www.youtube.com/watch?v=YCG_yP5MsMc', 'Pop Rock')
+    CHVRCHES = add_performer('chvrches','chvrches@gmail.com','password',"CHVRCHES",'chvrches@gmail.com','https://www.youtube.com/watch?v=JyqemIbjcfg','Psychadelic Funk Rap')
+    cascada = add_performer('cascada','cascada@gmail.com','password','Cascada','cascada@gmail.com','https://www.youtube.com/watch?v=k7JTClfWtTQ','Rock')
+    wethesame = add_performer('wethesame','wethesame@gmail.com','password','We, The Same','wethesame@gmail.com','https://www.youtube.com/watch?v=7tgIVjNLcdk','Rock')
     saw = add_performer('saw','saw@gmail.com','password','The Saw','saw@gmail.com','https://www.youtube.com/watch?v=Y49hSneTY-w','Rock')
-    flynn = add_performer('flynn','flynn@gmail.com','password','Johnny Flynn','flynn@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0&feature=youtu.be','Folk')
-    benders = add_performer('benders','benders@gmail.com','password','The Morning Benders','benders@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0&feature=youtu.be','Folk')
-    lianne = add_performer('lianne','liannelahavas@gmail.com','password','Lianne La Havas','liannelahavas@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0&feature=youtu.be','Folk')
+    flynn = add_performer('flynn','flynn@gmail.com','password','Johnny Flynn','flynn@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0','Folk')
+    benders = add_performer('benders','benders@gmail.com','password','The Morning Benders','benders@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0','Folk')
+    lianne = add_performer('lianne','liannelahavas@gmail.com','password','Lianne La Havas','liannelahavas@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0','Folk')
 
 #Add Events
     event1 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 12, 26),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Django Django"),40, 8)

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+import urlparse
 
 class Venue(models.Model):
     name = models.CharField(max_length=128)
@@ -40,6 +41,18 @@ class Event(models.Model):
         slug = models.SlugField()
         no_tickets = models.IntegerField(default=0)
         price = models.IntegerField(default=0)
+
+        def getcode(self):
+            url = self.media
+            if not url:
+                user = self.performer
+                performerid = Performer.objects.get(id =user.id)
+                video = performerid.media
+                str = "https://www.youtube.com/watch?v=k_LAZjLi3"
+            url_data = urlparse.urlparse(video)
+            query = urlparse.parse_qs(url_data.query)
+            result = query["v"][0]
+            return result
 
         def save(self, *args, **kwargs):
             self.slug = slugify(self.name)
