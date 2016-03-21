@@ -8,11 +8,11 @@
 		{% if tickets %}
 		<ul>
 			{% for Ticket in tickets %}
-			 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br/>
-			 <strong>Location: {{Ticket.event.venue}}</strong><br/>
-             <strong>Date: {{Ticket.event.time.date}}</strong><br/>
-             <strong>Time: {{Ticket.event.time.time}}</strong><br/>
-
+			 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br>
+			 <strong>Venue: {{Ticket.event.venue}}</strong><br>
+             <strong>Date: {{Ticket.event.time.date}}</strong><br>
+             <strong>Time: {{Ticket.event.time.time}}</strong><br>
+             <br>
 			{% endfor %}
 		</ul>
 		{% else %}
