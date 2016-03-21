@@ -8,12 +8,12 @@
 					<ul>
 					{% if user.is_authenticated %}
 						{% for Event in eventLocations %}
-							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.venue}} </a> <br/>
+							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.performer}}</br>{{Event.venue}} - {{Event.venue.location}} </a> <br/>
 								<a href="{% url 'buy_tickets' Event.id %}" id="buy"> Buy Tickets! </a></li><br/>
 						{% endfor %}
 					{% else %}
 						{% for Event in wallPopulate %}
-							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.venue}} </a> <br/>
+							<li><a href="{{ Event.media }}" target="blank">{{Event.name}}<br/>{{Event.performer}}</br>{{Event.venue}} - {{Event.venue.location}}</a> <br/>
 							<p>Login to buy tickets</p>
 						{% endfor %}
 					{% endif %}
