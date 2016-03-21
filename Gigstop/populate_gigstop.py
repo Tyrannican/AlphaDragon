@@ -53,35 +53,35 @@ def populate():
     lianne = add_performer('lianne','liannelahavas@gmail.com','password','Lianne La Havas','liannelahavas@gmail.com','https://www.youtube.com/watch?v=vbksyHcGsx0','Folk')
 
 #Add Events
-    event1 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 12, 26),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Django Django"),40, 8)
-    event2 = add_event('Gig Apocalypse',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Mono"),'',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
-    event3 = add_event('Fun in the Sun',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Kelvingrove Bandstand"),'',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
-    event4 = add_event('West End Festival',datetime.datetime(2016, 3, 26, 21, 30),Venue.objects.get(name="Old Fruitmarket"),'',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
-    event5 = add_event('Jazz Festival',datetime.datetime(2016, 3, 26, 21, 30),Venue.objects.get(name="King Tut's Wah Wah Hut"),'',Performer.objects.get(bandname="Frightened Rabbit"), 50, 12.50)
+    event1 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 12, 26),Venue.objects.get(name="Stereo"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Django Django"),40, 8)
+    event2 = add_event('Gig Apocalypse',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Mono"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
+    event3 = add_event('Fun in the Sun',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Kelvingrove Bandstand"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
+    event4 = add_event('West End Festival',datetime.datetime(2016, 3, 26, 21, 30),Venue.objects.get(name="Old Fruitmarket"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
+    event5 = add_event('Jazz Festival',datetime.datetime(2016, 3, 26, 21, 30),Venue.objects.get(name="King Tut's Wah Wah Hut"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Frightened Rabbit"), 50, 12.50)
 
-    event11 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 13, 15),Venue.objects.get(name="Stereo"),'',Performer.objects.get(bandname="Cascada"),20, 2)
-    event22 = add_event('Gig Apocalypse',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Mono"),'',Performer.objects.get(bandname="We, The Same"),25, 7.50)
-    event33 = add_event('Fun in the Sun',datetime.datetime(2016, 3, 27, 20, 00),Venue.objects.get(name="Kelvingrove Bandstand"),'',Performer.objects.get(bandname="Johnny Flynn"),80, 15)
-    event44 = add_event('West End Festival',datetime.datetime(2016, 3, 26, 22, 30),Venue.objects.get(name="Old Fruitmarket"),'',Performer.objects.get(bandname="The Morning Benders"), 70, 17)
+    event11 = add_event('Celtic Connections',datetime.datetime(2016, 3, 28, 13, 15),Venue.objects.get(name="Stereo"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Cascada"),20, 2)
+    event22 = add_event('Gig Apocalypse',datetime.datetime(2016, 3, 27, 20, 30),Venue.objects.get(name="Mono"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="We, The Same"),25, 7.50)
+    event33 = add_event('Fun in the Sun',datetime.datetime(2016, 3, 27, 20, 00),Venue.objects.get(name="Kelvingrove Bandstand"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Johnny Flynn"),80, 15)
+    event44 = add_event('West End Festival',datetime.datetime(2016, 3, 26, 22, 30),Venue.objects.get(name="Old Fruitmarket"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="The Morning Benders"), 70, 17)
     event55 = add_event('Jazz Festival',datetime.datetime(2016, 3, 26, 19, 30),Venue.objects.get(name="King Tut's Wah Wah Hut"),'',Performer.objects.get(bandname="Lianne La Havas"), 50, 12.50)
 
-    london10 = add_event('Junction 2',datetime.datetime(2016, 3, 25, 19, 15),Venue.objects.get(name="Windmill Brixton"),'',Performer.objects.get(bandname="Django Django"),40, 8)
-    london12 = add_event('Born & Bred',datetime.datetime(2016, 3, 28, 20, 30),Venue.objects.get(name="Roundhouse"),'',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
-    london13 = add_event('Meltdown',datetime.datetime(2016, 3, 28, 20, 30),Venue.objects.get(name="Vortex"),'',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
-    london14 = add_event('Field Day',datetime.datetime(2016, 3, 27, 21, 30),Venue.objects.get(name="The Borderline"),'',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
-    london15 = add_event('Raw Power',datetime.datetime(2016, 3, 27, 21, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Frightened Rabbit"), 50, 12.50)
+    london10 = add_event('Junction 2',datetime.datetime(2016, 3, 25, 19, 15),Venue.objects.get(name="Windmill Brixton"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Django Django"),40, 8)
+    london12 = add_event('Born & Bred',datetime.datetime(2016, 3, 28, 20, 30),Venue.objects.get(name="Roundhouse"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Admiral Fallow"),25, 7.50)
+    london13 = add_event('Meltdown',datetime.datetime(2016, 3, 28, 20, 30),Venue.objects.get(name="Vortex"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Biffy Clyro"),100, 40)
+    london14 = add_event('Field Day',datetime.datetime(2016, 3, 27, 21, 30),Venue.objects.get(name="The Borderline"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
+    london15 = add_event('Raw Power',datetime.datetime(2016, 3, 27, 21, 30),Venue.objects.get(name="Cabaret Voltaire"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Frightened Rabbit"), 50, 12.50)
 
-    london20 = add_event('Junction 2',datetime.datetime(2016, 3, 25, 20, 15),Venue.objects.get(name="Windmill Brixton"),'',Performer.objects.get(bandname="Cascada"),40, 8)
-    london22 = add_event('Born & Bred',datetime.datetime(2016, 3, 28, 21, 30),Venue.objects.get(name="Roundhouse"),'',Performer.objects.get(bandname="We, The Same"),25, 7.50)
-    london23 = add_event('Meltdown',datetime.datetime(2016, 3, 28, 21, 30),Venue.objects.get(name="Vortex"),'',Performer.objects.get(bandname="The Morning Benders"),100, 40)
-    london24 = add_event('Field Day',datetime.datetime(2016, 3, 27, 22, 30),Venue.objects.get(name="The Borderline"),'',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
-    london25 = add_event('Raw Power',datetime.datetime(2016, 3, 27, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Lianne La Havas"), 50, 12.50)
+    london20 = add_event('Junction 2',datetime.datetime(2016, 3, 25, 20, 15),Venue.objects.get(name="Windmill Brixton"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Cascada"),40, 8)
+    london22 = add_event('Born & Bred',datetime.datetime(2016, 3, 28, 21, 30),Venue.objects.get(name="Roundhouse"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="We, The Same"),25, 7.50)
+    london23 = add_event('Meltdown',datetime.datetime(2016, 3, 28, 21, 30),Venue.objects.get(name="Vortex"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="The Morning Benders"),100, 40)
+    london24 = add_event('Field Day',datetime.datetime(2016, 3, 27, 22, 30),Venue.objects.get(name="The Borderline"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="CHVRCHES"), 50, 10)
+    london25 = add_event('Raw Power',datetime.datetime(2016, 3, 27, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Lianne La Havas"), 50, 12.50)
 
-    edinburgh1 = add_event('From The Jam',datetime.datetime(2016, 4, 1, 20, 15),Venue.objects.get(name="The Liquid Rooms"),'',Performer.objects.get(bandname="Biffy Clyro"),40, 8)
-    edinburgh2 = add_event('Hosting the Masquerade"',datetime.datetime(2016, 4, 2, 21, 30),Venue.objects.get(name="The Caves"),'',Performer.objects.get(bandname="We, The Same"),25, 7.50)
-    edinburgh3 = add_event('Excuses',datetime.datetime(2016, 3, 31, 21, 30),Venue.objects.get(name="Bannerman's Bar"),'',Performer.objects.get(bandname="The Morning Benders"),100, 40)
-    edinburgh4 = add_event('Lianne La Havas Plays',datetime.datetime(2016, 3, 30, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Lianne La Havas"), 50, 10)
-    edinburgh5 = add_event('Squealing Pigs',datetime.datetime(2016, 4, 2, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'',Performer.objects.get(bandname="Admiral Fallow"), 50, 12.50)
+    edinburgh1 = add_event('From The Jam',datetime.datetime(2016, 4, 1, 20, 15),Venue.objects.get(name="The Liquid Rooms"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Biffy Clyro"),40, 8)
+    edinburgh2 = add_event('Hosting the Masquerade"',datetime.datetime(2016, 4, 2, 21, 30),Venue.objects.get(name="The Caves"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="We, The Same"),25, 7.50)
+    edinburgh3 = add_event('Excuses',datetime.datetime(2016, 3, 31, 21, 30),Venue.objects.get(name="Bannerman's Bar"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="The Morning Benders"),100, 40)
+    edinburgh4 = add_event('Lianne La Havas Plays',datetime.datetime(2016, 3, 30, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Lianne La Havas"), 50, 10)
+    edinburgh5 = add_event('Squealing Pigs',datetime.datetime(2016, 4, 2, 22, 30),Venue.objects.get(name="Cabaret Voltaire"),'https://www.youtube.com/watch?v=eh7lp9umG2I',Performer.objects.get(bandname="Admiral Fallow"), 50, 12.50)
 
 #Add Users
     leif = add_user('leif','leif.azzopardi@glasgow.ac.uk','leif','Glasgow')
@@ -103,7 +103,7 @@ def populate():
 
 
 def add_event(name,time,venue,media,performer,no_tickets,price):
-    c = Event.objects.get_or_create(name=name,time=time,venue=venue,performer=performer,no_tickets=no_tickets,price=price)
+    c = Event.objects.get_or_create(name=name,time=time,venue=venue,media=media,performer=performer,no_tickets=no_tickets,price=price)
 
 
 def add_venue(name,address,contact,location):

@@ -62,7 +62,7 @@ class Event(models.Model):
             super(Event, self).save(*args, **kwargs)
 
         def __unicode__(self):  #For Python 2, use __str__ on Python 3
-            return self.name
+            return self.name, self.venue
 
 
 class Ticket(models.Model):

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.auth.decorators import login_required, user_passes_test
 from app.forms import UserForm, UserProfileForm, AddEventForm, NewEventTicketsForm, PerformerProfileForm, PurchaseTicketForm
-from app.models import Performer, Event, Rating, Venue, Ticket, User, Like
+from app.models import Performer, Event, Rating, Venue, Ticket, User, Like, UserProfile
 from django.template import loader, RequestContext
 from datetime import datetime ,date , time
 
@@ -13,8 +13,16 @@ def index(request):
 	
 
     wallPopulate = Event.objects.order_by('-time')
-    template = loader.get_template('Gigstop/index.html')
-    context = RequestContext(request, {'wallPopulate':wallPopulate,})
+
+    try:
+        userLoggedIn = UserProfile.objects.get(user=request.user.id)
+        eventLocations = Event.objects.filter(venue__location=userLoggedIn.location)
+        template = loader.get_template('Gigstop/index.html')
+        context = RequestContext(request, {'wallPopulate':wallPopulate, 'eventLocations': eventLocations})
+
+    except UserProfile.DoesNotExist:
+        template = loader.get_template('Gigstop/index.html')
+        context = RequestContext(request, {'wallPopulate':wallPopulate})
 
     # context_dict = {'Event':event}
 

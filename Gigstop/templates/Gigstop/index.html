@@ -6,14 +6,17 @@
 
 				{% if wallPopulate %}
 					<ul>
-						{% for Event in wallPopulate %}
-							<li><a href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank"> {{ Event.media }} {{Event.name}} <br/>{{Event.venue}} </a> <br/>
-							{% if user.is_authenticated %}
+					{% if user.is_authenticated %}
+						{% for Event in eventLocations %}
+							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.venue}} </a> <br/>
 								<a href="{% url 'buy_tickets' Event.id %}" id="buy"> Buy Tickets! </a></li><br/>
-							{%else%}
-								<p>Login to purchase tickets!</p>
-							{% endif %}
 						{% endfor %}
+					{% else %}
+						{% for Event in wallPopulate %}
+							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.venue}} </a> <br/>
+							<p>Login to buy tickets</p>
+						{% endfor %}
+					{% endif %}
 					</ul>
 				{% else %}
 					<p>There was an error!</p>
