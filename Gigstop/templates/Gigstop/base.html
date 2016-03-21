@@ -40,6 +40,7 @@
 						{% if user.is_authenticated %}
 
 							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+							<li><a href="{% url 'userprofile' %}" id="userprofile">My Profile</a></li>
 
 							{% if user|is_member:"Band" %}
 

@@ -203,6 +203,12 @@ def performer_profile(request):
     context_dict['bandname']= bandname
     return render(request, 'Gigstop/performer_profile.html',context_dict )
 
+def userprofile(request):
+    get_user = User.objects.get(username=request.user.username)
+    tickets = Ticket.objects.all().filter(user = get_user)
+    context_dict = {'tickets': tickets}
+    return render(request, 'Gigstop/userprofile.html',context_dict )
+
 #Edit performer profile page view
 def edit_profile(request):
     return render(request, 'Gigstop/edit_profile.html', {})
