@@ -2,5 +2,17 @@
  *	Navigation menu of all CSS style sheets
  */
 
-@import url('base.css');
-@import url('wall.css');
+
+
+@import url('base.css');	
+
+@import url('prettyPhoto.css');	/*for media player*/
+
+/*@import url('bootstrap-theme.css');	*/
+/*@import url('bootstrap.css');	
+/*@import url('bootstrap.min.css');	*/
+
+
+
+@import url('animate.css');	/*for textilate*/
+/*@import url('style.css');	/*for textilate*/*/

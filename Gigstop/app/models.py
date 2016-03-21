@@ -47,14 +47,17 @@ class Event(models.Model):
             if not url:
                 user = self.performer
                 performerid = Performer.objects.get(id =user.id)
-                video = performerid.media
-                str = "https://www.youtube.com/watch?v=k_LAZjLi3"
+                url = performerid.media
+
             try:
-                url_data = urlparse.urlparse(video)
+                url_data = urlparse.urlparse(url)
                 query = urlparse.parse_qs(url_data.query)
                 result = query["v"][0]
+
             except:
-                result ="";
+                result =""
+            youtube = "https://img.youtube.com/vi/"
+            result = youtube+result+'/default.jpg'
             return result
 
         def save(self, *args, **kwargs):

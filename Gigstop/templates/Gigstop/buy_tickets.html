@@ -1,12 +1,28 @@
-{% extends 'Gigstop/base.html' %}
+<!-- {% extends 'Gigstop/base.html' %} -->
+<!-- {% load static %} -->
+<!-- 
+<link rel="stylesheet" href="../../static/CSS/CSSmenu.css" type="text/css" media="all">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+ -->
 
-{% block title %}Purchase Tickets!{% endblock %}
+<!-- {% block body_block %}
+ -->
+<style>
+	
+/*	h2{
+		color: white;
+	}
 
-{% block body_block %}
-	<h2>Confirm Ticket Purchase</h2>
-	<br/>
+	li {
+		color: #D26;
+	}*/
+
+</style>
+
+<!-- 	<h2 style="color:white;">Confirm Ticket Purchase</h2>
+	<br/> -->
 	<ul>
-		<li> Event: <strong>{{ event.name }}</strong></li>
+		<h2> <strong>{{ event.name }}</strong></h2>
 		<li> Date: <strong>{{ event.time }}</strong></li>
 		<li> Venue: <strong>{{ event.venue }}</strong></li>
 		<li> Performer: <strong>{{ event.performer }}</strong></li>
@@ -18,4 +34,5 @@
 		<br/>
 		<button type="submit" name="submit">Purchase Tickets!</button>
 	</form>
-{% endblock %}
+
+<!-- {% endblock %}

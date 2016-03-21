@@ -3,55 +3,117 @@
 {% load static %}
 {% load app_tags %}
 
-<!---CSS!>
-<!link rel="stylesheet" href="{% static "CSS/CSSmenu.css" %}" type="text/css" media="all">
-<!link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="../../static/CSS/CSSmenu.css" type="text/css" media="all">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<!"{% static "CSS/CSSmenu.css" %}"!>
+
 <!-jQuery->
-<!script src="{% static "JS/jquery-1.6.1.min.js" %}"></script>
-<!script src="{% static "JS/jquery.prettyPhoto.js" %}"></script>
-<!script src="{% static "JS/gigstop-jquery.js" %}"></script>
+<script src="../../static/JS/jquery-1.6.1.min.js"></script>
+<script src="../../static/JS/jquery.prettyPhoto.js"></script>
+<script src={% static "JS/gigstop-jqeury.js" %}></script>
+<script src="../../static/JS/masonry.pkgd.min.js"></script>
+<script src="../../static/JS/jquery.fittext.js"></script>
+<script src="../../static/JS/jquery.lettering.js"></script>
+<script src="../../static/JS/animation.js"></script>
+<script src="../../static/JS/jquery.textillate.js"></script>
+
+
+
+
+
 <!-- .Begin Base content -->
 <html>
-	<head>
-			<title>GigStop</title>
-	</head>
-
 	<body>
 		<div id="container">
-		<!--Navigation header-->
-			<header>
-				<nav id="menu" class="nav">
 
-					<div>
-						<ul id="toolbar">
-							<li><a href="{% url 'index' %}" id="Home">GIGSTOP</a></li>
+			<navbar id="navbar" role="navigation">
+				<div>
+					<ul>
+
+							<li class="logo">gig hub</li>
+							<li><a href="{% url 'index' %}" class="logo">gig hub</a></li>
+
 							<li><a href="{% url 'about' %}" id="buyTickets">About</a></li>
 							
 						{% if user.is_authenticated %}
+
 							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+
 							{% if user|is_member:"Band" %}
+
 								<li><a href="{% url 'performer_profile' %}" id="performer_profile">My Profile</a></li>
+
 							{% endif %}
+
 						{%else %}
+
 							<li><a href="{% url 'login' %}" id="login">Login</a></li>
 							<li><a href="{% url 'register' %}" id="register">Register</a></li>
+
 						{% endif %}
-						</ul>
-					</div>
 
-					<div class="social">
-	                    <ul>
-	                        <li><a href="http://twitter.com"><span class="screen-reader-text">Twitter</span></a></li>
-	                        <li><a href="http://facebook.com"><span class="screen-reader-text">Facebook</span></a></li>
-	                        <li><a href="http://youtube.com"><span class="screen-reader-text">YouTube</span></a></li>
-	                    </ul>
-					</div>
+					</ul>
+				</div>
+			</navbar>
 
-				</nav>
-			</header>
-			<hr />
+				
 			
-			{% block body_block %}{% endblock %}
+			<div id="content">
+				{% block body_block %}{% endblock %}
+			</div>
+
+
 		</div>
+
+
+		<script type="text/javascript" charset="utf-8">
+
+					/*Pretty photo - in frame media player*/
+						$(document).ready(function(){
+						$("a[rel^='prettyPhoto']").prettyPhoto({
+							social_tools:false,
+							// default_width:400,
+							// default_height:300,
+							theme: 'dark_rounded',
+							});
+						});
+
+					/*Masonry - wall tiling effect*/
+						$('.wall').masonry({
+			  				itemSelector: ".wall-item",
+			  				columnWidth: 300,
+			  				rowHeight:300,
+						});
+
+					/* side bar - scroll in animation */
+						$(document).ready(function() {
+					    $('#footer').click(function() {
+					        $('#footer').animate({
+					        'marginTop' : "+=600px" //moves left
+					        });
+					    });
+
+					    $("#wall-action-buy").click(function() {
+					        $('#footer').animate({'marginLeft' : "+=300px"});
+					    });
+
+					    $("#footer-close").click(function() {
+					        $('#footer').animate({'marginLeft' : "-=300px"});
+					    });
+
+					/*Main logo - pulse animation*/
+				    $(function () {
+					    $('.logo').textillate({ 
+					    	loop:true, 
+					    	in:{effect:'pulse', delay: 100, delayScale: 10, shuffle:true }, 
+					    	reverse:true, 
+					    	out:{effect:'pulse', delay: 100, delayScale: 10, shuffle:true } });
+					})
+
+					});
+		</script>
+
 	</body>
 </html>

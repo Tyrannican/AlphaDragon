@@ -5,32 +5,95 @@
 {% block body_block %}
 
 				{% if wallPopulate %}
-					<ul>
-					{% if user.is_authenticated %}
-						{% for Event in eventLocations %}
-							<li><a href="{{ Event.media }}" target="blank">{{Event.name}} <br/>{{Event.performer}}</br>{{Event.venue}} - {{Event.venue.location}} </a> <br/>
-								<a href="{% url 'buy_tickets' Event.id %}" id="buy"> Buy Tickets! </a></li><br/>
-						{% endfor %}
-					{% else %}
-						{% for Event in wallPopulate %}
-							<li><a href="{{ Event.media }}" target="blank">{{Event.name}}<br/>{{Event.performer}}</br>{{Event.venue}} - {{Event.venue.location}}</a> <br/>
-							<p>Login to buy tickets</p>
-						{% endfor %}
-					{% endif %}
-					</ul>
-				{% else %}
-					<p>There was an error!</p>
-				{% endif %}
 
-				<!-- <div class="caption">
-					<a id="bandPage" href="http://facebook.com" target="blank">MOTHERS CAKE</a>
-					<p id="genre">Alt Rock</p>
-					<p>King Tuts Whah Whah Hut</p>
-					<p id="price">$8.00</p>
-					<a id="videoPlay" rel="prettyphoto" href="http://www.youtube.com/watch?v=k_LAZjLi3RU" target="blank">PLAY</a>
-					<a id="buy" href="http://twitter.com" target="blank">BUY TICKETS</a>
-					<a id="interested" href="http://google.com" target="blank">I LIKE THIS!</a>
-				</div> -->
-		</div>
+				<body>
+					
+					<!WALL INTRODUCTION!>
+					<header id="header">
+
+						{% if user.is_authenticated %}
+							<h1 class="welcome" ><strong>Hi {{ UserProfile.user }}Chris</strong><br></h1>
+							<h1 style="font-size:95%;"> welcome back to gig hub !</h1>
+						{%else %}
+							<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
+							<h1 style="font-size:95%;">we believe you can't describe music with words<br>
+							Gig hub lets you <strong>media-dip</strong> your upcoming local shows and find out whos really playing</h1>
+						{% endif %}
+
+						<p>follow us on social media</p><br>
+						<ul class="icons">
+							<li><a href="http://twitter.com/moaimsc" target="blank"
+								class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/MOAImusic/" target="blank"
+								class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="http://soundcloud.com/moai_music" target="blank"
+								class="icon style2 fa-soundcloud"><span class="label">Soundcloud</span></a></li>
+							<li><a href="mailto:christopher.melville@me.com" target="blank"
+								class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+					</header>
+
+
+
+				</body>	
+
+
+				<!WALL ITEMS!>
+				<!-- <section id="main"> -->
+
+					<section class="wall">
+
+						{% for Event in wallPopulate %}
+
+						<div class="wall-item">
+
+							<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+
+								<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+
+								<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}}</h3>
+
+							</a>
+
+							{% if user.is_authenticated %}
+
+
+								<footer id="footer">
+									<div>
+										<br>
+										<button id="footer-close">close</button>
+										
+										<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
+										</object>
+									</div>
+								</footer>
+
+								<a id="wall-action-buy" id="buy">buy tickets</a>
+								<!-- 
+								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
+
+								<a id="wall-action-save">save</a><br/>
+
+							{%else%}
+
+								<p>Login to purchase tickets!</p>
+
+							{% endif %}
+
+						</div>
+
+						{% endfor %}
+
+
+				<!-- </section>	 -->
+
+
+						{% else %}
+							<p>There was an error!</p>
+						{% endif %}
+
+					</section>
+
+
 
 {% endblock %}
