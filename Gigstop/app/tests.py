@@ -12,7 +12,7 @@ def add_performer(bandname):
     return p
 
 def add_event(time,media,venue,performer):
-    e= Event.objects.get_or_create(time=time,media=media,venue=venue,performer=performer)
+    e, created= Event.objects.get_or_create(time=time,media=media,venue=venue,performer=performer)
     e.save()
     return e
 
@@ -29,9 +29,6 @@ class CategoryMethodTests(TestCase):
         event_one.save()
         self.assertEqual((event_one.no_tickets >=0),True)
 
-    def test_two(self):
-
-        self.assertEqual((1 >=0),True)
 
 
 class ProfileViewTests(TestCase):
@@ -46,7 +43,7 @@ class ProfileViewTests(TestCase):
         event_test = add_event(my_datetime,tm,tvenue,p)
         response = self.client.get(reverse('index'))
         self.assertEqual(response.status_code, 200)
-
+        self.assertContains(response, "Stereo")
 
 
 
