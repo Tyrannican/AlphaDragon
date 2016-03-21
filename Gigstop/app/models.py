@@ -44,6 +44,7 @@ class Event(models.Model):
         price = models.IntegerField(default=0)
 
 
+
         def getcode(self):
             url = self.media
             if not url:
@@ -64,6 +65,8 @@ class Event(models.Model):
 
         def save(self, *args, **kwargs):
             self.slug = slugify(self.name)
+            if(self.no_tickets<0):
+                self.no_tickets=0
             super(Event, self).save(*args, **kwargs)
 
         def __unicode__(self):  #For Python 2, use __str__ on Python 3
