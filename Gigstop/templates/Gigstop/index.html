@@ -42,22 +42,48 @@
 				<!-- <section id="main"> -->
 
 					<section class="wall">
+						{% if user.is_authenticated %}
+							{% if eventLocations %}
+							{% for Event in eventLocations %}
+								<div class="wall-item">
 
-						{% for Event in wallPopulate %}
+								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
 
-						<div class="wall-item">
+									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
 
-							<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
 
-								<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+								</a>
+									<footer id="footer">
+										<div>
+											<br>
+											<button id="footer-close">close</button>
+											
+											<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
+											</object>
+										</div>
+									</footer>
 
-								<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}}</h3>
+								<a id="wall-action-buy" id="buy">buy tickets</a>
+								<!-- 
+								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
 
-							</a>
+								<a id="wall-action-save">save</a><br/>
 
-							{% if user.is_authenticated %}
+								</div>
+							{% endfor %}
+							{% else %}
+								{% for Event in wallPopulate %}
 
+							<div class="wall-item">
 
+								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+
+									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+
+									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
+
+								</a>
 								<footer id="footer">
 									<div>
 										<br>
@@ -74,25 +100,50 @@
 
 								<a id="wall-action-save">save</a><br/>
 
-							{%else%}
+						</div>
+
+							{% endfor %}
+						{% endif %}
+						{% else %}
+							{% for Event in wallPopulate %}
+
+							<div class="wall-item">
+
+								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+
+									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+
+									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
+
+								</a>
+								<footer id="footer">
+									<div>
+										<br>
+										<button id="footer-close">close</button>
+										
+										<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
+										</object>
+									</div>
+								</footer>
+
+								<a id="wall-action-buy" id="buy">buy tickets</a>
+								<!-- 
+								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
+
+								<a id="wall-action-save">save</a><br/>
 
 								<p>Login to purchase tickets!</p>
 
-							{% endif %}
-
 						</div>
 
-						{% endfor %}
+							{% endfor %}
+						{% endif %}
 
 
 				<!-- </section>	 -->
 
-
-						{% else %}
-							<p>There was an error!</p>
-						{% endif %}
-
 					</section>
+			{% endif %}
 
 
 
