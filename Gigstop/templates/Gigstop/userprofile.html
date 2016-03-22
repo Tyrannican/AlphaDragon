@@ -8,24 +8,36 @@
 
 
 
-		<h1>{{user.username}} </h1>
-		<p>your tickets and saved artists</p><br>
+		<h1><strong>{{user.username}}'s</strong> Dashboard </h1>
+		<p>here are your tickets and saved artists</p><br>
 		{% if tickets %}
 
 		<ul>
 
+<div id="DashboardContainer">
+
+		<div class="UserTicketsBox">
+
+		<h1 style="color:#ff6600;">Tickets</h1>
 
 		{% for Ticket in tickets %}
-			<div class="UserTicketsBox">
+
 				<ul>
-					 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br>
+<!-- 					 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br>
 					 <strong>Venue: {{Ticket.event.venue}}</strong><br>
 		             <strong>Date: {{Ticket.event.time.date}}</strong><br>
 		             <strong>Time: {{Ticket.event.time.time}}</strong><br>
+		             <strong>Ticket ID: {{Ticket.event.id}}</strong><br> -->
+		             <li>
+		             	<strong>{{Ticket.event.performer.bandname}} - Ticket ID: {{Ticket.event.id}}</strong><br> 
+		             	Venue: {{Ticket.event.venue}}, 
+		             	Date: {{Ticket.event.time.date}}, 
+		             	Time: {{Ticket.event.time.time}}
+		             	<br>
 		             <br>
 					{% endfor %}
 				</ul>
-			</div>
+			
 
 		{% else %}
 
@@ -33,16 +45,26 @@
 
 		{% endif %}
 
+		</div>
+
 		{% if likes %}
-				{% for Like in likes %}
-			<div class="UserTicketsBox">
-				<ul>
-					 <li><strong>Band: {{Like.performer.bandname}}</strong><br>
-		             <br>
-					{% endfor %}
-				</ul>
-			</div>
-		{% endif %}				
+
+		<div class="UserTicketsBox">
+
+			<h1 style="color:#ff6600;">Liked</h1>
+
+			{% for Like in likes %}
+
+			<ul>
+				 <li><strong>Band: {{Like.performer.bandname}}</strong><br>
+	             <br>
+				{% endfor %}
+			</ul>
+
+		{% endif %}	
+		
+		</div>	
+</div>			
 
 
 </header>

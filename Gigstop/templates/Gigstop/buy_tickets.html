@@ -1,32 +1,50 @@
-{% load static %}
+<!-- <!DOCTYPE html>
 
+{% load static %}
+{% load app_tags %}
+
+<! CSS !>
 <link rel="stylesheet" href="../../static/CSS/CSSmenu.css" type="text/css" media="all">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">	
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<! jQuery >
+<script src="../../static/JS/jquery-1.6.1.min.js"></script>
+<script src="../../static/JS/jquery.prettyPhoto.js"></script>
+<script src="{% static "JS/gigstop-jquery.js" %}"></script>
+<script src="{% static "JS/gigstop-ajax.js" %}"></script>
+<script src="../../static/JS/masonry.pkgd.min.js"></script>
+<script src="../../static/JS/jquery.fittext.js"></script>
+<script src="../../static/JS/jquery.lettering.js"></script>
+<script src="../../static/JS/animation.js"></script>
+<script src="../../static/JS/jquery.textillate.js"></script>
+
+ -->
+
+<!-- {% load static %} -->
 
 <!-- {% block body_block %}-->
 
-	<ul id="buyTicketBlock">
-		<br>
-		<h1 style="color:#ff6600;">{{ event.performer }}</h1>
-		<li> Date:-  <strong>{{ event.time }}</strong></li>
-		<li> Venue:-  <strong>{{ event.venue }}</strong></li>
-		<li> Event:-  <strong>{{ event.name }}</strong></li>
-		<li> Ticket Price:-  <strong>£{{ event.price }}</strong></li>
-	</ul>
-	<form id="buy_tickets" method="post" action="{% url 'buy_tickets' event.id %}">
-		{% csrf_token %}
-		{{ buy_form.as_p }}
-		<button type="submit" name="submit">Purchase Tickets!</button>
-		<br><br>
-		<button id="footer-close" type="button" onclick="">Close</button>
-	</form>
+<html>
+	
+	<body>
 
+		<ul id="buyTicketBlock">
+			<br>
+			<h1 style="color:#ff6600;">{{ event.performer }}</h1>
+			<li> Date:-  <strong>{{ event.time }}</strong></li>
+			<li> Venue:-  <strong>{{ event.venue }}</strong></li>
+			<li> Event:-  <strong>{{ event.name }}</strong></li>
+			<li> Ticket Price:-  <strong>£{{ event.price }}</strong></li>
+		</ul>
+		<form id="buy_tickets" method="post" action="{% url 'buy_tickets' event.id %}">
+			{% csrf_token %}
+			{{ buy_form.as_p }}
+			<button type="submit" name="submit" style="color:white;">Purchase Tickets!</button>
+			<br><br>
+		</form>
 
-	<!BUY_TICKET FORM DOES NOT LOAD BASE TEMPLATE - SO INLINE JS REQUIRED!>
-	<script>
-		$("#footer-close").click(function() {
-	        $('#footer').animate({'marginLeft' : "-=300px"});
-	    });
-	</script>
+	</body>
+
+</html>
 
 <!-- {% endblock %}

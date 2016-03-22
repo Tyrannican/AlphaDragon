@@ -4,34 +4,6 @@
 
 {% block body_block %}
 
-
-		<script language="javascript" type="text/javascript">
-
-			// BUY TICKETS pop-in box
-			$(document).ready(function(){
-				$('a#wall-action-buy').click(function(){
-					var page = $(this).attr('href');
-					alert(page);
-					$('.buyit').load(page);
-					return false;
-				});
-			});
-
-
-
-			// BAND SAVED pop-in message
-			$(document).ready(function(){
-				$('a#wall-action-save').click(function(){
-					var bandName = $(this).attr('name');
-					var myInnerHtml = document.getElementById("savemessage").innerHTML;
-					var concat = bandName + " has been added to your favourites!!!";
-					document.getElementById("savemessage").innerHTML = concat;
-				});
-			});
-
-
-		</script>
-
 	{% if wallPopulate %}
 
 	<body>
@@ -40,16 +12,14 @@
 		<header id="header">
 
 			{% if user.is_authenticated %}
-				<h1 class="welcome" ><strong>{{ user.username }}'s media wall</strong><br></h1>
-				<h1 style="font-size:95%;">now showing your gigs in {{ user.UserProfile.location }}</h1>
+				<h1 class="welcome" ><strong>{{ user.username }}'s</strong> media wall<br></h1>
+				<p>now showing your gigs in {{ user.UserProfile.location }}</p>
 			{%else %}
 				<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
-				<h1 style="font-size:95%;">we believe you can't describe music with words<br>
-				Gig hub lets you <strong>media-dip</strong> your upcoming local shows and find out whos really playing</h1>
+				<h1 style="font-size:95%;">you can't describe music with words or pictures<br>
+				thats why Gig hub helps you <strong>media-dip</strong> your upcoming local shows to find out whos really playing</h1>
 			{% endif %}
 		</header>
-
-
 
 	</body>	
 
@@ -87,11 +57,13 @@
 					<footer id="footer">
 						<div class="buyit">
 						</div>
+
+						<button id="footer-close" type="button" onclick="" style="color:white;">Close</button>
+
 					</footer>
 
-					<button data-url="{% url 'buy_tickets' Event.id %}"  type="button" class="btn btn-primary buyticket" value="{{Event.id}}">I like this</button>
-					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
-					<!-- <a id="wall-action-save" name="{{Event.performer.bandname}}">save</a><br/> -->
+					<button id="index-button" data-url="{% url 'buy_tickets' Event.id %}"  type="button" class="btn btn-primary buyticket" value="{{Event.id}}">Buy Tickets</button>
+					<button id="index-button" data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
 
 				</div>
 				{% endfor %}
@@ -116,11 +88,13 @@
 					<footer id="footer">
 						<div class="buyit">
 						</div>
+
+						<button id="footer-close" type="button" onclick="" style="color:white;">Close</button>
+						
 					</footer>
 
-					<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>	
+					<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">Buy Tickets</a>	
 					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
-					<!-- <a id="wall-action-save" name="{{Event.performer.bandname}}">save</a><br/> -->
 
 				</div>
 
@@ -149,14 +123,11 @@
 				</div>
 
 				{% endfor %}
+
 			{% endif %}
 
-
-	<!-- </section>	 -->
-
 		</section>
-{% endif %}
 
-
+	{% endif %}
 
 {% endblock %}

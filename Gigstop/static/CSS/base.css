@@ -1403,16 +1403,12 @@
 	}
 
 	body {
-		/*	background-image: url("bg.jpg");*/
-		background: url("bg.jpg") no-repeat center center fixed; 
+		/*BACKGROUND IMAGE*/
+		background: url("../images/bg.jpg") no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
 		background-size: cover;
-
-		/*	background-size: 100%
-		background-size: cover;*/
-		/*background-position: top center;*/
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -1654,8 +1650,9 @@
 			#DashboardContainer {
 				display: flex; 
 			    height:100%;
-			    width: 90%;
+			    width: 95%;
 			    margin: 0px 50px 0px 50px;
+			    /*border: solid 1px white;*/
 			}
 
 			.BandBox {
@@ -1667,14 +1664,12 @@
 				background-color: black;
 			    border: solid 0.5px #ff6600;
 			    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0), 0 0 1em 0 #000;
-			    margin: 0px 0px 50px 0px;
+			    margin:20px;
+			    padding:0px 10px 0px 10px;
 			    overflow-y:scroll;
-			    padding-left: 30px;
 			}
 
 			.EventBox {
-/*			    width:700px;
-			    height:1100px;*/
 				border-radius: 10px;
 			    background-color: black;
 			    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0), 0 0 10em 0 #16030a;
@@ -1683,30 +1678,47 @@
 			}
 
 			.TicketsBox {
-				/*display: inline-block;*/
+				padding:0px 10px 0px 10px;
 			    height:900px;
 			    width: 50%;
 				border-radius: 10px;
 			    background-color: black;
 			    border: solid 0.5px #ff6600;
 			    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0), 0 0 10em 0 #16030a;
-			    margin-left:50px;
+			    margin:20px;
 			    overflow-y: scroll;
 			    text-align: left;
 			    padding: 20px 20px 20px 20px;
 			}
 
-
 			.UserTicketsBox {
 				/*text-align: left;*/
+				overflow-y: scroll;
 				display: inline-block;
-			    height:150px;
-			    width: 200px;
+				padding:0px 10px 0px 10px;
+			    height:700px;
+			    width: 50%;
+			    margin:20px;
 				border-radius: 10px;
+				border: solid 0.5px #ff6600;
 			    background-color: black;
 			    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0), 0 0 10em 0 #16030a;
-			    margin: 0px 0px 150px 0px;
 			}
+
+			.UserHeaderBox {
+				/*text-align: left;*/
+				display: inline-block;
+				padding:0px 10px 0px 10px;
+			    height:100px;
+			    width: 50%;
+			    margin:20px;
+				border-radius: 10px;
+				border: solid 0.5px #ff6600;
+			    background-color: black;
+			    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0), 0 0 10em 0 #16030a;
+			}
+
+
 
 
 			.LoginBox:hover, 
@@ -1777,10 +1789,10 @@
 				-ms-appearance: none;
 				appearance: none;
 				background-color: rgba(0, 0, 0, 0.25);
-				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 1em 0 #ff6600;
+				/*box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 1em 0 #ff6600;*/
 				border-radius: 4px;
 				border: none;
-				border: solid 0.5px black;
+				border: solid 0.5px #ff6600;
 				display: block;
 				outline: 0;
 				padding: 0 1em;
@@ -1939,6 +1951,18 @@
 
 /* Button */
 
+	button#index-button {
+		color:white;
+		width:132px;
+		/*background-color: rgba(255, 255, 255, 0.2);*/
+	}
+
+	button#index-button:hover {
+		color:white;
+		background-color: rgba(0, 0, 0, 0.4);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 2em 0 #ff6600; 
+	}
+
 	input[type="submit"],
 	input[type="reset"],
 	input[type="button"],
@@ -1952,7 +1976,7 @@
 		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: black;
+		background-color: transparent;
 		
 		/*outline: 1px solid white;*/
 		border-radius: 10px;
@@ -1965,8 +1989,8 @@
 		display: inline-block;
 		font-weight: 200;
 		height: 2em;
-		line-height: 1em;
-		padding: 0 2em ;
+		line-height: 0em;
+		padding: 1em 2em 1em 2em;
 		text-align: center;
 		text-decoration: none;
 		white-space: nowrap;
@@ -1977,8 +2001,10 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			/*background-color: #ff6600;*/
+			background-color: #ff6600;
 			border: 1px solid #ff6600;
+			color: white;
+
 		}
 
 		input[type="submit"]:active,
@@ -1986,8 +2012,8 @@
 		input[type="button"]:active,
 		button:active,
 		.button:active {
-			background-color: #ff496e;
-		}
+			background-color: #ff8533;
+		}*/
 
 		input[type="submit"].icon,
 		input[type="reset"].icon,
@@ -2054,7 +2080,7 @@
 			input[type="button"].alt:active,
 			button.alt:active,
 			.button.alt:active {
-				background-color: rgba(255, 0, 0, 0.2);
+				/*background-color: rgba(255, 0, 0, 0.2);*/
 			}
 
 			input[type="submit"].alt.icon:before,

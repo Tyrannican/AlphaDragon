@@ -3,7 +3,19 @@
 {%block title %}Thank you!{% endblock %}
 
 {%block body_block %}
-	<p>Thank you for purchasing your tickets through Gigstop!</p>
+	
+	<header id="header">
+
+			{% if user.is_authenticated %}
+				<h1 class="welcome" ><strong>Thanks {{ user.username }}!!!</strong> <br></h1>
+				<h1 style="color:#ff6600;">your tickets have been purchased</h1>
+				<p>Were now redirecting you back to your media wall...</p>
+			{%else %}
+				<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
+				<h1 style="font-size:95%;">we believe you can't describe music with words<br>
+				Gig hub lets you <strong>media-dip</strong> your upcoming local shows and find out whos really playing</h1>
+			{% endif %}
+		</header>
 
 	<!-- THIS SCRIPT WILL NEVER EER CHANGE SO IT IS HARD CODED INTO THE PAGE. NO NEED FOR AN EXTERNAL FILE FOR SUCH A SMALL PIECE OF CODE -->
 	<script>

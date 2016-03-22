@@ -3,16 +3,15 @@
 {% load static %}
 {% load app_tags %}
 
-
+<! CSS !>
 <link rel="stylesheet" href="../../static/CSS/CSSmenu.css" type="text/css" media="all">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-<!"{% static "CSS/CSSmenu.css" %}"!>
-
-<!-jQuery->
+<! jQuery >
 <script src="../../static/JS/jquery-1.6.1.min.js"></script>
 <script src="../../static/JS/jquery.prettyPhoto.js"></script>
-<script src="../../static/JS/gigstop-jquery.js"></script>
+<!-- <script src="../../static/JS/gigstop-jquery.js"></script> -->
+<script src="{% static "JS/gigstop-jquery.js" %}"></script>
 <script src="{% static "JS/gigstop-ajax.js" %}"></script>
 <script src="../../static/JS/masonry.pkgd.min.js"></script>
 <script src="../../static/JS/jquery.fittext.js"></script>
@@ -26,7 +25,7 @@
 
 <!-- .Begin Base content -->
 <html>
-	<body>
+	<body onload="buyTicket()">
 		<div id="container">
 
 			<navbar id="navbar" role="navigation">
@@ -66,84 +65,12 @@
 				</div>
 			</navbar>
 
-				
-			
 			<div id="content">
 				{% block body_block %}{% endblock %}
 			</div>
 
-
 		</div>
 
-
-		<script type="text/javascript" charset="utf-8">
-
-					/*Pretty photo - in frame media player*/
-						$(document).ready(function(){
-						$("a[rel^='prettyPhoto']").prettyPhoto({
-							social_tools:false,
-							// default_width:400,
-							// default_height:300,
-							theme: 'dark_rounded',
-							});
-						});
-
-					/*Masonry - wall tiling effect*/
-						$('.wall').masonry({
-			  				itemSelector: ".wall-item",
-			  				columnWidth: 300,
-			  				rowHeight:300,
-						});
-
-					/* side bar - scroll in animation */
-						$(document).ready(function() {
-					    $('#footer').click(function() {
-					        $('#footer').animate({
-					        'marginTop' : "+=600px" //moves left
-					        });
-					    });
-
-					    // ANIMATE FLOAT IN BOXES
-					    // buy tickets
-					    $("#wall-action-buy").click(function() {
-					        $('#footer').animate({'marginLeft' : "+=305px"});
-					    });
-					    $(".buyticket").click(function() {
-					        $('#footer').animate({'marginLeft' : "+=305px"});
-					    });
-
-
-
-
-					    $("#footer-close").click(function() {
-					    	alert("close called");
-					        $('#footer').animate({'marginLeft' : "-=300px"});
-					    });
-
-
-
-					    //save band
-					    $("#wall-action-save").click(function() {
-					        $('#savedAlert').animate({'marginBottom': "+=110px"}).fadeIn("slow").delay(1000).fadeOut("slow").animate({'marginBottom': "-=200px"});
-					    });
-
-					    $(".likethis").click(function() {
-					        $('#savedAlert').animate({'marginBottom': "+=110px"}).fadeIn("slow").delay(1000).fadeOut("slow").animate({'marginBottom': "-=200px"});
-					    });
-
-
-
-					/*Main logo - pulse animation*/
-				    $(function () {
-					    $('#logo').textillate({ 
-					    	loop:true, 
-					    	in:{effect:'pulse', delay: 100, delayScale: 10, shuffle:true }, 
-					    	reverse:true, 
-					    	out:{effect:'pulse', delay: 100, delayScale: 10, shuffle:true } });
-					})
-
-					});
-		</script>
-
 	</body>
+
 </html>
