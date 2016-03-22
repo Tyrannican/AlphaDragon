@@ -103,7 +103,8 @@ def populate():
 
 
 def add_event(name,time,venue,media,performer,no_tickets,price):
-    c = Event.objects.get_or_create(name=name,time=time,venue=venue,media=media,performer=performer,no_tickets=no_tickets,price=price)
+    performermedia = performer.media
+    c = Event.objects.get_or_create(name=name,time=time,venue=venue,media=performermedia,performer=performer,no_tickets=no_tickets,price=price)
 
 
 def add_venue(name,address,contact,location):
