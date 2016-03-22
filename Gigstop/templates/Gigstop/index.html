@@ -17,15 +17,7 @@
 				});
 			});
 
-			$(document).ready(function(){
-             $('.buyticket').click(function(){
-                var eventid =this.value;
-                var page = $(this).attr('data-url');
-                alert(page);
-                $('.buyit').load(page);
-				return false
-              });
-			});
+
 
 			// BAND SAVED pop-in message
 			$(document).ready(function(){
@@ -97,9 +89,8 @@
 						</div>
 					</footer>
 
-					<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
 					<button data-url="{% url 'buy_tickets' Event.id %}"  type="button" class="btn btn-primary buyticket" value="{{Event.id}}">I like this</button>
-					<!--<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>-->
+					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
 					<!-- <a id="wall-action-save" name="{{Event.performer.bandname}}">save</a><br/> -->
 
 				</div>
