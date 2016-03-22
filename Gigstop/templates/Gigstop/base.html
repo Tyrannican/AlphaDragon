@@ -108,6 +108,12 @@
 					    $("#wall-action-buy").click(function() {
 					        $('#footer').animate({'marginLeft' : "+=305px"});
 					    });
+					    $(".buyticket").click(function() {
+					        $('#footer').animate({'marginLeft' : "+=305px"});
+					    });
+
+
+
 
 					    $("#footer-close").click(function() {
 					    	alert("close called");
@@ -118,6 +124,10 @@
 
 					    //save band
 					    $("#wall-action-save").click(function() {
+					        $('#savedAlert').animate({'marginBottom': "+=110px"}).fadeIn("slow").delay(1000).fadeOut("slow").animate({'marginBottom': "-=200px"});
+					    });
+
+					    $(".likethis").click(function() {
 					        $('#savedAlert').animate({'marginBottom': "+=110px"}).fadeIn("slow").delay(1000).fadeOut("slow").animate({'marginBottom': "-=200px"});
 					    });
 

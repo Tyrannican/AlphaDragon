@@ -247,10 +247,11 @@ def interested_band(request):
         chosenevent = request.GET['event_id']
         if chosenevent:
             event = Event.objects.get(id=chosenevent)
+            bandname = event.performer.bandname
             currentuser = User.objects.get(username=request.user.username)
             interested = Like(user=currentuser,performer=event.performer)
             interested.save()
-    return HttpResponse("Interesting bands")
+    return HttpResponse(bandname)
 
 #Thank you view
 def thanks(request):
