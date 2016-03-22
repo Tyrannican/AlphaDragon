@@ -4,10 +4,16 @@
 
 {% block body_block %}
 
-	{% if wallPopulate %}
 
 	<body>
+		<script language="javascript" type="text/javascript">
 
+
+
+
+		</script>
+
+			});
 		<!WALL INTRODUCTION!>
 		<header id="header">
 
@@ -22,13 +28,12 @@
 		</header>
 
 
-
 	</body>	
 
 
 	<!WALL ITEMS!>
 	<!-- <section id="main"> -->
-
+		<div id="listobands"></div>
 		<section class="wall">
 			{% if user.is_authenticated %}
 
@@ -61,7 +66,8 @@
 
 					<!-- <a id="wall-action-buy" id="buy">buy tickets</a> -->
 					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
-					<a id="wall-action">save</a><br/>
+					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
+
 
 				</div>
 				{% endfor %}
@@ -92,7 +98,7 @@
 					</footer>
 
 					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
-					<a id="wall-action-save">save</a><br/>
+					<a id="wall-save">save</a><br/>
 
 				</div>
 
@@ -125,7 +131,6 @@
 	<!-- </section>	 -->
 
 		</section>
-{% endif %}
 
 
 

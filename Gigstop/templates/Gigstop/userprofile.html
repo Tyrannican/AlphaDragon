@@ -31,8 +31,18 @@
 
 				<p>You have to active tickets</p>
 
-				{% endif %}
+		{% endif %}
 
+		{% if likes %}
+				{% for Like in likes %}
+			<div class="UserTicketsBox">
+				<ul>
+					 <li><strong>Band: {{Like.performer.bandname}}</strong><br>
+		             <br>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
 
 </header>
 {% endblock %}

@@ -17,5 +17,6 @@ urlpatterns = patterns('',
 	url(r'^buy_tickets/(?P<event_id>[\w\-]+)/$', views.buy_tickets, name='buy_tickets'),
 	url(r'^showtickets/(?P<event_id>[\w\-]+)/$', views.show_tickets, name='showtickets'),
 	url(r'^thanks/$', views.thanks, name='thanks'),
-	url(r'^userprofile/$', views.userprofile, name='userprofile')
+	url(r'^userprofile/$', views.userprofile, name='userprofile'),
+	url(r'^interested_band/$', views.interested_band, name='interested_band')
 	)
