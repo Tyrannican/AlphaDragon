@@ -258,5 +258,15 @@ def thanks(request):
     return render(request, 'Gigstop/thanks.html', {})
 
 def show_tickets(request,event_id):
+    event = Event.objects.get(id=event_id)
+    no_of_tickets = event.no_tickets
+    ticket_cost = event.price
     list_of_tickets = Ticket.objects.filter(event_id=event_id)
-    return render(request,'Gigstop/showtickets.html', {'tickets': list_of_tickets})
+    money_made =0
+    tickets_sold = 0
+    for t in list_of_tickets:
+        i = t.quantity * ticket_cost
+        tickets_sold +=t.quantity
+        money_made +=i
+
+    return render(request,'Gigstop/showtickets.html', {'tickets': list_of_tickets,'notickets':no_of_tickets,'money_made':money_made,'tickets_sold':tickets_sold})

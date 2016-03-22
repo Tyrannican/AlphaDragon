@@ -8,16 +8,16 @@
 
 {% if tickets %}
 
-	<h1><strong>Tickets Sold</strong></h1>
-	<h1><strong>number of tickets left{{Event.name}}</strong></h1>
-	<h1><strong>money made{{Ticket.event}}</strong></h1>
+	<h1><strong>Tickets sold: {{tickets_sold}} </strong></h1>
+	<h1><strong>Nuumber of tickets left: {{notickets}}</strong></h1>
+	<h1><strong>Total cost of tickets sold: £{{money_made}}</strong></h1>
 
 		<ul>
 			{% for Ticket in tickets %}
 			 <strong>Name: {{Ticket.user}}</strong><br/>
 			 <a id="emailFan" href="mailto:{{ Ticket.user.email }}?Subject={{ Ticket.event }}" target="_top">Email: {{ Ticket.user.email }}</a><br>
 <!-- 			 <strong>Price: £{{Ticket.price}}</strong><br/> -->
-			 <strong>Tickets: {{Ticket.quantity}} @ unit price £{{Ticket.price}} = £Ticket.total</strong><br/>
+			 <strong>Tickets: {{Ticket.quantity}} @ unit price £{{Ticket.price}} = £{{Ticket.total}} <br/>
 			 <br>
 			{% endfor %}
 		</ul>

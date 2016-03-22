@@ -79,6 +79,10 @@ class Ticket(models.Model):
     user = models.ForeignKey(User)
     quantity = models.IntegerField(max_length=3)
 
+    def total(self):
+        totalcost = self.price *self.quantity
+        return totalcost
+
     def __unicode__(self):  #For Python 2, use __str__ on Python 3
         return self.event.name
 		
