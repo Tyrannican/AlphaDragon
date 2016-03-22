@@ -207,7 +207,6 @@ def userprofile(request):
     get_user = User.objects.get(username=request.user.username)
     tickets = Ticket.objects.all().filter(user = get_user)
     likes = Like.objects.filter(user=get_user)
-    bands = Performer.objects.filter(performer_id__in=likes)
     context_dict = {'tickets': tickets,'likes':likes}
     return render(request, 'Gigstop/userprofile.html',context_dict )
 
