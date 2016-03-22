@@ -4,73 +4,80 @@
 
 {% block body_block %}
 
+
+
+	<!-- AJAX -->
+	<script language="javascript" type="text/javascript">
+
+		/*SHOW TICKETS IN THE DASH*/
+		$(document).ready(function(){
+			$('ul#AJAXtickets li input').click(function(){
+				var page = $(this).attr('link');
+				$('.TicketsBox').load(page);
+				return false;
+			});
+		});
+
+		/*SHOW ADD EVENT FORM IN THE DASH*/
+		$(document).ready(function(){
+			$('a#addEvent').click(function(){
+				var page = $(this).attr('href');
+				$('.TicketsBox').load(page);
+				return false;
+			});
+		});
+
+	</script>
+
+
 	<header id="header">
 
-		<!-- AJAX -->
-		<script language="javascript" type="text/javascript">
+		<h1><strong>{{bandname}}'s</strong> Dashboard</h1>
 
+		<a id="addEvent" class="button" href="{% url 'add_event' %}" id="addEvent">Add Event</a>
 
-			$(document).ready(function(){
-				$('ul#AJAXtickets li input').click(function(){
-					var page = $(this).attr('link');
-					alert(page);
-					$('.TicketsBox').load(page);
-					return false;
-				});
+	</header>
 
-			});
+		<div id="DashboardContainer">
+			<!-- POPULATE A BANDS EVENTS -->
+			<div class="BandBox">
 
-		</script>
+			{% if events %}
 
-		<h1>{{bandname}}</h1><br/><br>
+				<br>
 
+						{% for Event in events %}
 
+						<ul id="AJAXtickets">
+							 <li><strong>{{Event.name}}</strong></li>
+							 <li><strong>Location: {{Event.venue}}</strong></li>
+							 <li><strong>Media: {{Event.media}}</strong></li>
+							 <li><strong>Tickets Available: {{Event.no_tickets}}</strong></li>
+							 <li><a id="delete" type="button" href="{% url 'delete_event' Event.id %}"> Delete Event</a></li><br>
+							 <li><input type="button" 
+							 	value="show tickets" 
+							 	link="{% url 'showtickets' Event.id %}"
+							 	onclick="getTickets({% url 'showtickets' Event.id %})"/></li><br>
 
-		<!-- ADD EVENT BUTTON -->
-		<a class="button" href="{% url 'add_event' %}" id="addEvent">Add Event</a>
-			<br><br><br>
+							{% endfor %}
+						</ul>
 
+			{% else %}
 
+				<p>You dont have any gigs on the main wall yet</p>
 
-		<!-- TICKET INFORMATION - **AJAX TARGET** -->
-		<div class="TicketsBox">
+			{% endif %}
+
+			</div>
+
+			<!-- TICKET INFORMATION - **AJAX TARGET** -->
+			<div class="TicketsBox">
+				nothing selected
+			</div>
+
 		</div>
 
 
 
-		<!-- POPULATE A BANDS EVENTS -->
-				{% if events %}
-
-					{% for Event in events %}
-
-<!-- 				<div class="BandBox">
- -->
-					<ul id="AJAXtickets">
-						 <!-- <li><a href="donkey"><strong>Event: {{Event.name}}</strong></a></li> -->
-						 <li><a href="donkey">{{Event.name}}</a></li>
-						 <li><strong>Location: {{Event.venue}}</strong></li>
-						 <li><strong>Media: {{Event.media}}</strong></li>
-						 <li><strong>Tickets Available: {{Event.no_tickets}}</strong></li>
-						 <li><a type="button" href="{% url 'delete_event' Event.id %}"> Delete Event</a></li><br>
-						 <li><input type="button" 
-						 	value="show tickets" 
-						 	link="{% url 'showtickets' Event.id %}"
-						 	onclick="getTickets({% url 'showtickets' Event.id %})"/></li><br><br>
-						<!-- <a class="button" href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br/> -->
-
-						{% endfor %}
-					</ul>
-
-<!-- 				</div> -->
-
-				{% else %}
-
-				<p>You dont have any gigs on the main wall yet</p>
-
-				{% endif %}
-
-
-
-	</header>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends 'Gigstop/base.html' %}
+<!-- {% extends 'Gigstop/base.html' %} -->
 
 {% block title %}Add Event{% endblock %}
 
@@ -10,7 +10,7 @@
 
 		<p>Events will show up on the main wall for people in that location</p><br>
 			
-			<div class="EventBox">
+<!-- 			<div class="EventBox"> -->
 
 	            <form id="add_Event" method="post" action="{% url 'add_event' %}">
 			
@@ -26,53 +26,8 @@
 
 		        </form>
 
-		    </div>
+<!-- 		    </div> -->
 
 	</header>
 
 	{% endblock %}
-
-
-
-
-	<header id="header">
-		<h1><strong>Login</strong></h1>
-		<div class="LoginBox">
-			<form id="login" method="post" 	action"/app/login/">
-				{% csrf_token %}
-				
-			<div>
-			<br>
-
-			Username: <input type="text" name="username" value="" size="50"/>
-			<br />
- 			Password: <input type="password" name="pass" value="" size="50"/>
- 			<br />
-
-			</div>
-			
-			<input type="submit" value="submit"/>
-			<br><br>
-
-			</form>
-
-			<p>Dont have an account?</p>
-
-			<input type="submit" value="register here" onClick="parent.location='{% url 'register' %}'"/>
-		</div>
-
-<br>
-		<p>Contact Gig Hub</p><br>
-			<ul class="icons">
-				<li><a href="http://twitter.com/moaimsc" target="blank"
-					class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="https://www.facebook.com/MOAImusic/" target="blank"
-					class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-				<li><a href="http://soundcloud.com/moai_music" target="blank"
-					class="icon style2 fa-soundcloud"><span class="label">Soundcloud</span></a></li>
-				<li><a href="mailto:christopher.melville@me.com" target="blank"
-					class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-			</ul>
-
-	</header>
-

@@ -13,12 +13,12 @@
 <script src="../../static/JS/jquery-1.6.1.min.js"></script>
 <script src="../../static/JS/jquery.prettyPhoto.js"></script>
 <script src="../../static/JS/gigstop-jquery.js"></script>
+<script src="{% static "JS/gigstop-ajax.js" %}"></script>
 <script src="../../static/JS/masonry.pkgd.min.js"></script>
 <script src="../../static/JS/jquery.fittext.js"></script>
 <script src="../../static/JS/jquery.lettering.js"></script>
 <script src="../../static/JS/animation.js"></script>
 <script src="../../static/JS/jquery.textillate.js"></script>
-<script src="{% static "JS/gigstop-ajax.js" %}"></script>
 
 
 
@@ -50,7 +50,7 @@
 							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
 
 							{% if user|is_member:"Band" %}
-								<li><a href="{% url 'performer_profile' %}" id="performer_profile">My Profile</a></li>
+								<li><a href="{% url 'performer_profile' %}" id="performer_profile">{{ user.username }}'s Profile</a></li>
 							{%else%}
 								<li><a href="{% url 'userprofile' %}" id="userprofile">{{ user.username }}'s Profile</a></li>
 							{% endif %}
@@ -103,13 +103,25 @@
 					        });
 					    });
 
-					    $("#wall-action-save").click(function() {
-					        $('#footer').animate({'marginLeft' : "+=300px"});
+					    // ANIMATE FLOAT IN BOXES
+					    // buy tickets
+					    $("#wall-action-buy").click(function() {
+					        $('#footer').animate({'marginLeft' : "+=305px"});
 					    });
 
 					    $("#footer-close").click(function() {
+					    	alert("close called");
 					        $('#footer').animate({'marginLeft' : "-=300px"});
 					    });
+
+
+
+					    //save band
+					    $("#wall-action-save").click(function() {
+					        $('#savedAlert').animate({'marginBottom': "+=110px"}).fadeIn("slow").delay(1000).fadeOut("slow").animate({'marginBottom': "-=200px"});
+					    });
+
+
 
 					/*Main logo - pulse animation*/
 				    $(function () {

@@ -5,15 +5,35 @@
 {% block body_block %}
 
 
-	<body>
 		<script language="javascript" type="text/javascript">
 
+			// BUY TICKETS pop-in box
+			$(document).ready(function(){
+				$('a#wall-action-buy').click(function(){
+					var page = $(this).attr('href');
+					// alert(page);
+					$('.buyit').load(page);
+					return false;
+				});
+			});
 
+			// BAND SAVED pop-in message
+			$(document).ready(function(){
+				$('a#wall-action-save').click(function(){
+					var bandName = $(this).attr('name');
+					var myInnerHtml = document.getElementById("savemessage").innerHTML;
+					var concat = bandName + " has been added to your favourites!!!";
+					document.getElementById("savemessage").innerHTML = concat;
+				});
+			});
 
 
 		</script>
 
-			});
+	{% if wallPopulate %}
+
+	<body>
+
 		<!WALL INTRODUCTION!>
 		<header id="header">
 
@@ -28,12 +48,20 @@
 		</header>
 
 
+
 	</body>	
 
 
 	<!WALL ITEMS!>
 	<!-- <section id="main"> -->
+
 		<section class="wall">
+
+			<footer id="savedAlert">
+				<div class="saveIt">
+					<p id="savemessage"> has been added to your favourites!</p>
+				</div>
+			</footer>
 			{% if user.is_authenticated %}
 
 				{% if eventLocations %}
@@ -51,22 +79,18 @@
 								 - {{Event.venue.location}}
 								 <br>£ {{Event.price}}</h3>
 						</span></span>
-						<!-- <span class="wall-item-info"><span></span></span> -->
+
 					</a>
 
-<!-- 						<footer id="footer">
-							<div>
-								<br>
-								<button id="footer-close">close</button>
-								<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
-								</object>
-							</div>
-						</footer> -->
+					<footer id="footer">
+						<div class="buyit">
+						</div>
+					</footer>
 
-					<!-- <a id="wall-action-buy" id="buy">buy tickets</a> -->
-					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
+					<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
+
 					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
-
+					<!-- <a id="wall-action-save" name="{{Event.performer.bandname}}">save</a><br/> -->
 
 				</div>
 				{% endfor %}
@@ -83,21 +107,19 @@
 							<h3><br><strong>{{Event.performer.bandname}}</strong><br>
 								<br>{{Event.name}}
 								<br>{{Event.venue}}
-								 - {{Event.venue.location}}</h3>
+								 - {{Event.venue.location}}
+								 <br>£ {{Event.price}}</h3>
 						</span></span>
 					</a>
+					
 					<footer id="footer">
-						<div>
-							<br>
-							<button id="footer-close">close</button>
-							
-							<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
-							</object>
+						<div class="buyit">
 						</div>
 					</footer>
 
-					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
-					<a id="wall-save">save</a><br/>
+					<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>	
+					<button data-eventid="{{Event.id}}" type="button" class="btn btn-primary likethis" value="{{Event.id}}">I like this</button>
+					<!-- <a id="wall-action-save" name="{{Event.performer.bandname}}">save</a><br/> -->
 
 				</div>
 
@@ -106,6 +128,8 @@
 			{% endif %}
 
 			{% else %}
+
+			<!USER IS NOT LOGGED IN!>
 
 				{% for Event in wallPopulate %}
 
@@ -130,6 +154,7 @@
 	<!-- </section>	 -->
 
 		</section>
+{% endif %}
 
 
 

@@ -1,22 +1,28 @@
-{% extends 'Gigstop/base.html' %}
+<!-- {% extends 'Gigstop/base.html' %} -->
 
 {% load staticfiles %}
 
 {% block title %}Tickets for Event{% endblock %}
 
 {% block body_block %}
-	<p><strong>Tickets Sold</strong></p><br/>
-		{% if tickets %}
+
+{% if tickets %}
+
+	<h1><strong>Tickets Sold</strong></h1>
+	<h1><strong>number of tickets left{{Event.name}}</strong></h1>
+	<h1><strong>money made{{Ticket.event}}</strong></h1>
+
 		<ul>
 			{% for Ticket in tickets %}
 			 <strong>Name: {{Ticket.user}}</strong><br/>
-			 <a href="mailto:{{ Ticket.user.email }}?Subject={{ Ticket.event }}" target="_top">Email: {{ Ticket.user.email }}</a>
-			 <strong>Price: ${{Ticket.price}}</strong><br/>
-			 <strong>Tickets purchased: {{Ticket.quantity}} </strong><br/>
+			 <a id="emailFan" href="mailto:{{ Ticket.user.email }}?Subject={{ Ticket.event }}" target="_top">Email: {{ Ticket.user.email }}</a><br>
+<!-- 			 <strong>Price: £{{Ticket.price}}</strong><br/> -->
+			 <strong>Tickets: {{Ticket.quantity}} @ unit price £{{Ticket.price}} = £Ticket.total</strong><br/>
+			 <br>
 			{% endfor %}
 		</ul>
 		{% else %}
 		<p>You haven't sold any tickets for this event</p>
 		{% endif %}
-	<a href="{% url 'index' %}" id="home">Back to Home</a>
+	<!-- <a href="{% url 'index' %}" id="home">Back to Home</a> -->
 {% endblock %}
