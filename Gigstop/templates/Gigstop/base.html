@@ -38,14 +38,12 @@
 							<li><a href="{% url 'about' %}" id="buyTickets">About</a></li>
 							
 						{% if user.is_authenticated %}
-
-							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
-							<li><a href="{% url 'userprofile' %}" id="userprofile">My Profile</a></li>
-
 							{% if user|is_member:"Band" %}
-
+								<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
 								<li><a href="{% url 'performer_profile' %}" id="performer_profile">My Profile</a></li>
-
+							{% else %}
+								<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+								li><a href="{% url 'userprofile' %}" id="userprofile">My Profile</a></li>
 							{% endif %}
 
 						{%else %}
