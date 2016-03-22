@@ -3,20 +3,36 @@
 {% load staticfiles %}
 
 {% block body_block %}
-	<div id="profile">
-		<h2>Welcome {{user.username}} </h2><br/>
+
+<header id="header">
+
+
+
+		<h1>{{user.username}} </h1>
+		<p>your tickets and saved artists</p><br>
 		{% if tickets %}
+
 		<ul>
-			{% for Ticket in tickets %}
-			 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br>
-			 <strong>Venue: {{Ticket.event.venue}}</strong><br>
-             <strong>Date: {{Ticket.event.time.date}}</strong><br>
-             <strong>Time: {{Ticket.event.time.time}}</strong><br>
-             <br>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>You have to active tickets</p>
-		{% endif %}
-	</div>
+
+
+		{% for Ticket in tickets %}
+			<div class="UserTicketsBox">
+				<ul>
+					 <li><strong>Band: {{Ticket.event.performer.bandname}}</strong><br>
+					 <strong>Venue: {{Ticket.event.venue}}</strong><br>
+		             <strong>Date: {{Ticket.event.time.date}}</strong><br>
+		             <strong>Time: {{Ticket.event.time.time}}</strong><br>
+		             <br>
+					{% endfor %}
+				</ul>
+			</div>
+
+				{% else %}
+
+				<p>You have to active tickets</p>
+
+				{% endif %}
+
+
+</header>
 {% endblock %}

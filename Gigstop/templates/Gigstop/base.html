@@ -12,7 +12,7 @@
 <!-jQuery->
 <script src="../../static/JS/jquery-1.6.1.min.js"></script>
 <script src="../../static/JS/jquery.prettyPhoto.js"></script>
-<script src={% static "JS/gigstop-jqeury.js" %}></script>
+<script src="../../static/JS/gigstop-jquery.js"></script>
 <script src="../../static/JS/masonry.pkgd.min.js"></script>
 <script src="../../static/JS/jquery.fittext.js"></script>
 <script src="../../static/JS/jquery.lettering.js"></script>
@@ -31,19 +31,27 @@
 			<navbar id="navbar" role="navigation">
 				<div>
 					<ul>
+							<li><a href="http://twitter.com/moaimsc" target="blank"
+								class="icon style6 fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="https://www.facebook.com/MOAImusic/" target="blank"
+								class="icon style6 fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="http://soundcloud.com/moai_music" target="blank"
+								class="icon style6 fa-soundcloud"><span class="label">Soundcloud</span></a></li>
+							<li><a href="mailto:christopher.melville@me.com" target="blank"
+								class="icon style6 fa-envelope-o"><span class="label">Email</span></a></li>
 
-							<li class="logo">gig hub</li>
-							<li><a href="{% url 'index' %}" class="logo">gig hub</a></li>
+							<li><a id="logo" href="{% url 'index' %}" >gig hub </a></li>
 
-							<li><a href="{% url 'about' %}" id="buyTickets">About</a></li>
+							<li><a href="{% url 'about' %}" id="about">About</a></li>
 							
 						{% if user.is_authenticated %}
+
+							<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
+
 							{% if user|is_member:"Band" %}
-								<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
 								<li><a href="{% url 'performer_profile' %}" id="performer_profile">My Profile</a></li>
-							{% else %}
-								<li><a href="{% url 'logout' %}" id="logout">Logout</a></li>
-								li><a href="{% url 'userprofile' %}" id="userprofile">My Profile</a></li>
+							{%else%}
+								<li><a href="{% url 'userprofile' %}" id="userprofile">{{ user.username }}'s Profile</a></li>
 							{% endif %}
 
 						{%else %}
@@ -94,7 +102,7 @@
 					        });
 					    });
 
-					    $("#wall-action-buy").click(function() {
+					    $("#wall-action-save").click(function() {
 					        $('#footer').animate({'marginLeft' : "+=300px"});
 					    });
 
@@ -104,7 +112,7 @@
 
 					/*Main logo - pulse animation*/
 				    $(function () {
-					    $('.logo').textillate({ 
+					    $('#logo').textillate({ 
 					    	loop:true, 
 					    	in:{effect:'pulse', delay: 100, delayScale: 10, shuffle:true }, 
 					    	reverse:true, 

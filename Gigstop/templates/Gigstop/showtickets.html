@@ -9,8 +9,8 @@
 		{% if tickets %}
 		<ul>
 			{% for Ticket in tickets %}
-			 <strong>User: {{Ticket.user}}</strong><br/>
-			 <strong>User Email: {{ Ticket.user.email }}</strong><br/>
+			 <strong>Name: {{Ticket.user}}</strong><br/>
+			 <a href="mailto:{{ Ticket.user.email }}?Subject={{ Ticket.event }}" target="_top">Email: {{ Ticket.user.email }}</a>
 			 <strong>Price: ${{Ticket.price}}</strong><br/>
 			 <strong>Tickets purchased: {{Ticket.quantity}} </strong><br/>
 			{% endfor %}

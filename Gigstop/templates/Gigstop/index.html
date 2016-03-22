@@ -4,146 +4,128 @@
 
 {% block body_block %}
 
-				{% if wallPopulate %}
+	{% if wallPopulate %}
 
-				<body>
-					
-					<!WALL INTRODUCTION!>
-					<header id="header">
+	<body>
 
-						{% if user.is_authenticated %}
-							<h1 class="welcome" ><strong>Hi {{ UserProfile.user }}</strong><br></h1>
-							<h1 style="font-size:95%;"> Welcome back to GigHub !</h1>
-						{%else %}
-							<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
-							<h1 style="font-size:95%;">We believe you can't describe music with words<br>
-							Gig hub lets you <strong>media-dip</strong> your upcoming local shows and find out who's really playing</h1>
-						{% endif %}
+		<!WALL INTRODUCTION!>
+		<header id="header">
 
-						<p>follow us on social media</p><br>
-						<ul class="icons">
-							<li><a href="http://twitter.com/moaimsc" target="blank"
-								class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="https://www.facebook.com/MOAImusic/" target="blank"
-								class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="http://soundcloud.com/moai_music" target="blank"
-								class="icon style2 fa-soundcloud"><span class="label">Soundcloud</span></a></li>
-							<li><a href="mailto:christopher.melville@me.com" target="blank"
-								class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-					</header>
-
-
-
-				</body>	
-
-
-				<!WALL ITEMS!>
-				<!-- <section id="main"> -->
-
-					<section class="wall">
-						{% if user.is_authenticated %}
-							{% if eventLocations %}
-							{% for Event in eventLocations %}
-								<div class="wall-item">
-
-								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
-
-									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
-
-									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
-
-								</a>
-									<footer id="footer">
-										<div>
-											<br>
-											<button id="footer-close">close</button>
-											
-											<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
-											</object>
-										</div>
-									</footer>
-
-								<a id="wall-action-buy" id="buy">Buy Tickets</a>
-								<!-- 
-								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
-
-								<a id="wall-action-save">save</a><br/>
-
-								</div>
-							{% endfor %}
-							{% else %}
-								{% for Event in wallPopulate %}
-
-							<div class="wall-item">
-
-								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
-
-									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
-
-									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
-
-								</a>
-								<footer id="footer">
-									<div>
-										<br>
-										<button id="footer-close">close</button>
-										
-										<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
-										</object>
-									</div>
-								</footer>
-
-								<a id="wall-action-buy" id="buy">Buy Tickets</a>
-								<!-- 
-								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
-
-								<a id="wall-action-save">save</a><br/>
-
-						</div>
-
-							{% endfor %}
-						{% endif %}
-						{% else %}
-							{% for Event in wallPopulate %}
-
-							<div class="wall-item">
-
-								<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
-
-									<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
-
-									<h3 class="wall-item-info" class="wall-info">{{Event.name}}<h3><h3 class="wall-info">{{Event.venue}} - {{Event.venue.location}}</h3>
-
-								</a>
-								<footer id="footer">
-									<div>
-										<br>
-										<button id="footer-close">close</button>
-										
-										<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
-										</object>
-									</div>
-								</footer>
-
-								<a id="wall-action-buy" id="buy">Buy Tickets</a>
-								<!-- 
-								<a id="wall-action-buy" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a> -->
-
-								<a id="wall-action-save">save</a><br/>
-
-								<p>Login to purchase tickets!</p>
-
-						</div>
-
-							{% endfor %}
-						{% endif %}
-
-
-				<!-- </section>	 -->
-
-					</section>
+			{% if user.is_authenticated %}
+				<h1 class="welcome" ><strong>{{ user.username }}'s media wall</strong><br></h1>
+				<h1 style="font-size:95%;">now showing your gigs in {{ user.UserProfile.location }}</h1>
+			{%else %}
+				<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
+				<h1 style="font-size:95%;">we believe you can't describe music with words<br>
+				Gig hub lets you <strong>media-dip</strong> your upcoming local shows and find out whos really playing</h1>
 			{% endif %}
+		</header>
+
+
+
+	</body>	
+
+
+	<!WALL ITEMS!>
+	<!-- <section id="main"> -->
+
+		<section class="wall">
+			{% if user.is_authenticated %}
+
+				{% if eventLocations %}
+
+				{% for Event in eventLocations %}
+
+				<div class="wall-item">
+
+					<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+						<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+						<span class="wall-item-info"><span>
+							<h3><br><strong>{{Event.performer.bandname}}</strong><br>
+								<br>{{Event.name}}
+								<br>{{Event.venue}}
+								 - {{Event.venue.location}}
+								 <br>£ {{Event.price}}</h3>
+						</span></span>
+						<!-- <span class="wall-item-info"><span></span></span> -->
+					</a>
+
+<!-- 						<footer id="footer">
+							<div>
+								<br>
+								<button id="footer-close">close</button>
+								<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
+								</object>
+							</div>
+						</footer> -->
+
+					<!-- <a id="wall-action-buy" id="buy">buy tickets</a> -->
+					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
+					<a id="wall-action">save</a><br/>
+
+				</div>
+				{% endfor %}
+
+				{% else %}
+
+					{% for Event in wallPopulate %}
+
+				<div class="wall-item">
+
+					<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+						<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+						<span class="wall-item-info"><span>
+							<h3><br><strong>{{Event.performer.bandname}}</strong><br>
+								<br>{{Event.name}}
+								<br>{{Event.venue}}
+								 - {{Event.venue.location}}</h3>
+						</span></span>
+					</a>
+					<footer id="footer">
+						<div>
+							<br>
+							<button id="footer-close">close</button>
+							
+							<object data="{% url 'buy_tickets' Event.id %}" width="300" height="600" type="text/html">
+							</object>
+						</div>
+					</footer>
+
+					<a id="wall-action" href="{% url 'buy_tickets' Event.id %}" id="buy">buy tickets</a>
+					<a id="wall-action-save">save</a><br/>
+
+				</div>
+
+				{% endfor %}
+
+			{% endif %}
+
+			{% else %}
+
+				{% for Event in wallPopulate %}
+
+				<div class="wall-item">
+
+					<a id="wall-item-media" href="{{Event.media}}" rel="prettyphoto" title="">
+						<img class="wall-item-img" src="{{Event.getcode}} " alt="" /><br>
+						<span class="wall-item-info"><span>
+							<h3><br><strong>{{Event.performer.bandname}}</strong><br>
+								<br>{{Event.name}}
+								<br>{{Event.venue}}
+								 - {{Event.venue.location}}
+								<br><span style="color:#ff6600;">login to purchase</span></h3>
+						</span></span>
+					</a>
+				</div>
+
+				{% endfor %}
+			{% endif %}
+
+
+	<!-- </section>	 -->
+
+		</section>
+{% endif %}
 
 
 

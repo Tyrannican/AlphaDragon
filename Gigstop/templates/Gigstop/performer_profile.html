@@ -3,22 +3,74 @@
 {% load staticfiles %}
 
 {% block body_block %}
-	<div id="profile">
-		<h2>Welcome {{bandname}} </h2><br/>
-		{% if events %}
-		<ul>
-			{% for Event in events %}
-			 <li><strong>Event: {{Event.name}}</strong><br/>
-			 <strong>Location: {{Event.venue}}</strong><br/> 
-			 <strong>Media: {{Event.media}}</strong><br/>
-			 <strong>Tickets Available: {{Event.no_tickets}}</strong><br/>
-			 <a href="{% url 'delete_event' Event.id %}"> Delete Event</a><br/>
-			<a href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br/>
-			{% endfor %}
-		</ul>
-		{% else %}
-		<p>You have no gigs listed</p>
-		{% endif %}
-	</div>
-	<a href="{% url 'add_event' %}" id="addEvent">Add Event</a><br/>
+
+	<header id="header">
+
+		<!-- AJAX -->
+		<script language="javascript" type="text/javascript">
+
+
+			$(document).ready(function(){
+				$('ul#AJAXtickets li input').click(function(){
+					var page = $(this).attr('link');
+					alert(page);
+					$('.TicketsBox').load(page);
+					return false;
+				});
+
+			});
+
+		</script>
+
+		<h1>{{bandname}}</h1><br/><br>
+
+
+
+		<!-- ADD EVENT BUTTON -->
+		<a class="button" href="{% url 'add_event' %}" id="addEvent">Add Event</a>
+			<br><br><br>
+
+
+
+		<!-- TICKET INFORMATION - **AJAX TARGET** -->
+		<div class="TicketsBox">
+		</div>
+
+
+
+		<!-- POPULATE A BANDS EVENTS -->
+				{% if events %}
+
+					{% for Event in events %}
+
+<!-- 				<div class="BandBox">
+ -->
+					<ul id="AJAXtickets">
+						 <!-- <li><a href="donkey"><strong>Event: {{Event.name}}</strong></a></li> -->
+						 <li><a href="donkey">{{Event.name}}</a></li>
+						 <li><strong>Location: {{Event.venue}}</strong></li>
+						 <li><strong>Media: {{Event.media}}</strong></li>
+						 <li><strong>Tickets Available: {{Event.no_tickets}}</strong></li>
+						 <li><a type="button" href="{% url 'delete_event' Event.id %}"> Delete Event</a></li><br>
+						 <li><input type="button" 
+						 	value="show tickets" 
+						 	link="{% url 'showtickets' Event.id %}"
+						 	onclick="getTickets({% url 'showtickets' Event.id %})"/></li><br><br>
+						<!-- <a class="button" href= "{% url 'showtickets' Event.id %}">Show Tickets</a></li><br/> -->
+
+						{% endfor %}
+					</ul>
+
+<!-- 				</div> -->
+
+				{% else %}
+
+				<p>You dont have any gigs on the main wall yet</p>
+
+				{% endif %}
+
+
+
+	</header>
+
 {% endblock %}

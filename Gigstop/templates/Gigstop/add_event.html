@@ -3,20 +3,76 @@
 {% block title %}Add Event{% endblock %}
 
 	{% block body_block %}
-            <form id="add_Event" method="post" action="{% url 'add_event' %}">
+
+	<header id="header">
+
+		<h1>Add an Event</a></h1>
+
+		<p>Events will show up on the main wall for people in that location</p><br>
 			
-			<h2>Add an Event</a></h2>
+			<div class="EventBox">
 
-	            {% csrf_token %}
+	            <form id="add_Event" method="post" action="{% url 'add_event' %}">
+			
+		            {% csrf_token %}
 
-	            {{ event_form.as_p }}
-	            
-	            {{ ticket_form.as_p }}
+		            {{ event_form.as_p }}
+		            
+		            {{ ticket_form.as_p }}
 
-                <br/>
-             <button type="submit" name="submit">Create Event</button>
+	                <br/>
+	             <input class="button" type="submit" name="Create Event"></input>
+	             <input class="button" type="submit" name="cancel" onClick="parent.location='{% url 'performer_profile' %}'"/>
 
-	        </form>
+		        </form>
+
+		    </div>
+
+	</header>
 
 	{% endblock %}
+
+
+
+
+	<header id="header">
+		<h1><strong>Login</strong></h1>
+		<div class="LoginBox">
+			<form id="login" method="post" 	action"/app/login/">
+				{% csrf_token %}
+				
+			<div>
+			<br>
+
+			Username: <input type="text" name="username" value="" size="50"/>
+			<br />
+ 			Password: <input type="password" name="pass" value="" size="50"/>
+ 			<br />
+
+			</div>
+			
+			<input type="submit" value="submit"/>
+			<br><br>
+
+			</form>
+
+			<p>Dont have an account?</p>
+
+			<input type="submit" value="register here" onClick="parent.location='{% url 'register' %}'"/>
+		</div>
+
+<br>
+		<p>Contact Gig Hub</p><br>
+			<ul class="icons">
+				<li><a href="http://twitter.com/moaimsc" target="blank"
+					class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="https://www.facebook.com/MOAImusic/" target="blank"
+					class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li>
+				<li><a href="http://soundcloud.com/moai_music" target="blank"
+					class="icon style2 fa-soundcloud"><span class="label">Soundcloud</span></a></li>
+				<li><a href="mailto:christopher.melville@me.com" target="blank"
+					class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
+			</ul>
+
+	</header>
 
