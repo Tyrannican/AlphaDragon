@@ -24,11 +24,11 @@ STATIC_PATH = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = '@5hpo^h_zx#n2srs15+^b=c90fcir1rrla^md06m0t_!2m)4@v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ShinRa26.pythonanywhere.com', 'shinra26.pythonanywhere.com']
 
 
 # Application definition
