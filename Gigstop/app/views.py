@@ -206,8 +206,15 @@ def performer_profile(request):
 def userprofile(request):
     get_user = User.objects.get(username=request.user.username)
     tickets = Ticket.objects.all().filter(user = get_user)
-    likes = Like.objects.filter(user=get_user)
-    context_dict = {'tickets': tickets,'likes':likes}
+    results = Like.objects.filter(user=get_user)
+    newresults =[]
+    seen_altid = []
+    for result in results:
+        if result.performer_id not in seen_altid:
+            seen_altid.append(result.performer_id)
+            newresults.append(result)
+
+    context_dict = {'tickets': tickets,'likes':newresults}
     return render(request, 'Gigstop/userprofile.html',context_dict )
 
 #Edit performer profile page view
