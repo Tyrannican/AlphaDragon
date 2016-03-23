@@ -60,7 +60,7 @@ class Event(models.Model):
             except:
                 result =""
             youtube = "https://img.youtube.com/vi/"
-            result = youtube+result+'/default.jpg'
+            result = youtube+result+'/hqdefault.jpg'
             return result
 
         def save(self, *args, **kwargs):
