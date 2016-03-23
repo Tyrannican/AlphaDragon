@@ -13,7 +13,11 @@
 
 			{% if user.is_authenticated %}
 				<h1 class="welcome" ><strong>{{ user.username }}'s</strong> media wall<br></h1>
-				<p>now showing your gigs in {{ user.UserProfile.location }}</p>
+				{% if eventLocations %}
+					<p>now showing your gigs in {{ userLocation.location }}</p>
+				{% else %}
+					<p>There do not appear to be any gigs in {{ userLocation.location }}.<br/> Here is a list of available gigs from other cities.</p>
+				{% endif %}
 			{%else %}
 				<h1 class="welcome">Welcome to <strong>Gig Hub</strong></li>
 				<h1 style="font-size:95%;">you can't describe music with words or pictures<br>

@@ -18,7 +18,7 @@ def index(request):
         userLoggedIn = UserProfile.objects.get(user=request.user.id)
         eventLocations = Event.objects.filter(venue__location=userLoggedIn.location)
         template = loader.get_template('Gigstop/index.html')
-        context = RequestContext(request, {'wallPopulate':wallPopulate, 'eventLocations': eventLocations})
+        context = RequestContext(request, {'wallPopulate':wallPopulate, 'eventLocations': eventLocations, 'userLocation': userLoggedIn})
 
     except UserProfile.DoesNotExist:
         template = loader.get_template('Gigstop/index.html')
