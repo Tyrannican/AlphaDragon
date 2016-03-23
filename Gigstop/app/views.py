@@ -221,8 +221,7 @@ def buy_tickets(request, event_id):
 
     if request.method == 'POST':
         buy_form = PurchaseTicketForm(data=request.POST)
-
-        if buy_form.is_valid:
+        if buy_form.is_valid():
             ticket = buy_form.save(commit=False)
             ticket.event = event
             ticket.price = event.price
