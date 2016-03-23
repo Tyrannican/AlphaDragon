@@ -1953,7 +1953,9 @@
 
 	button#index-button {
 		color:white;
-		width:132px;
+		width:50%;
+		margin-left:10px;
+		margin-right: 10px;
 		/*background-color: rgba(255, 255, 255, 0.2);*/
 	}
 
@@ -2326,12 +2328,13 @@
 	}
 
 	.wall-item #wall-action-buy {
-		width: 132px;
+		width: 120px;
 		float: left;
+
 	}
 
 	.wall-item #wall-action-save {
-		width: 132px;
+		width: 120px;
 		float: left;
 	}
 
@@ -2387,5 +2390,10 @@
 
 	.wall-item 	#wall-action:hover {
 
+	}
+
+	.index-button-container {
+		display: flex;
+		position: center;
 	}
 
