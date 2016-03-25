@@ -206,8 +206,8 @@ def performer_profile(request):
 def userprofile(request):
     get_user = User.objects.get(username=request.user.username)
     tickets = Ticket.objects.all().filter(user = get_user)
-    likes = Like.objects.filter(user=get_user)
-    context_dict = {'tickets': tickets,'likes':likes}
+    results = Like.objects.filter(user=get_user)
+    context_dict = {'tickets': tickets,'likes':results}
     return render(request, 'Gigstop/userprofile.html',context_dict )
 
 #Edit performer profile page view
@@ -221,8 +221,7 @@ def buy_tickets(request, event_id):
 
     if request.method == 'POST':
         buy_form = PurchaseTicketForm(data=request.POST)
-
-        if buy_form.is_valid:
+        if buy_form.is_valid():
             ticket = buy_form.save(commit=False)
             ticket.event = event
             ticket.price = event.price
@@ -249,7 +248,8 @@ def interested_band(request):
             event = Event.objects.get(id=chosenevent)
             bandname = event.performer.bandname
             currentuser = User.objects.get(username=request.user.username)
-            interested = Like(user=currentuser,performer=event.performer)
+            interested,created = Like.objects.get_or_create(user=currentuser,performer=event.performer)
+
             interested.save()
     return HttpResponse(bandname)
 
